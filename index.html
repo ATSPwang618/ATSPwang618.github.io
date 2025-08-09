@@ -1,8 +1,717 @@
-<p>Hello 大家好</p>
-<p>我是阡陌，这是我的个人网站。 </p>
-<p>很高兴你来到这里, 你可以在以下的网站找到我</p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Jam作品展示 | ATSPwang618</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<ul>
-  <li> <a href="https://www.zhihu.com/people/AJLoveChina">知乎</a> </li>
-  <li> <a href="http://hejie.nigeerhuo.com">我的博客(已经不更细了,现在在知乎写文章)</a> </li>
-</ul>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #00f2fe;
+            --dark: #0f0c29;
+            --darker: #080616;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #00c9a7;
+            --warning: #ffd166;
+            --danger: #ff6b6b;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏样式 */
+        header {
+            background: rgba(15, 12, 41, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(106, 17, 203, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 英雄区域样式 */
+        .hero {
+            padding: 80px 0 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(106, 17, 203, 0.15), transparent 70%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(37, 117, 252, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(106, 17, 203, 0.3);
+            border-radius: 10px;
+            padding: 20px 30px;
+            min-width: 200px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        /* 筛选区域 */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(106, 17, 203, 0.3);
+            color: var(--light);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-color: transparent;
+        }
+
+        /* 作品网格 */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 30px 0 80px;
+        }
+
+        .game-card {
+            background: rgba(15, 12, 41, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(106, 17, 203, 0.3);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(37, 117, 252, 0.2);
+            border-color: rgba(37, 117, 252, 0.6);
+        }
+
+        .game-image {
+            height: 200px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--success);
+            color: var(--darker);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .game-content {
+            padding: 20px;
+        }
+
+        .game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .game-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .game-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .game-tag {
+            background: rgba(37, 117, 252, 0.15);
+            color: var(--accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .game-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            box-shadow: 0 0 15px rgba(37, 117, 252, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* 页脚 */
+        footer {
+            background: rgba(8, 6, 22, 0.9);
+            padding: 40px 0;
+            border-top: 1px solid rgba(106, 17, 203, 0.3);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(106, 17, 203, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .stats {
+                gap: 20px;
+            }
+
+            .stat-box {
+                padding: 15px 20px;
+                min-width: 150px;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-gamepad logo-icon"></i>
+                    <span>JAM SHOWCASE</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#">首页</a>
+                    <a href="#">往期比赛</a>
+                    <a href="#">作品提交</a>
+                    <a href="#">排行榜</a>
+                    <a href="#">关于我们</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="container">
+            <h1>2023游戏创作大赛作品展</h1>
+            <p>探索来自全球开发者的创意作品，体验48小时极限开发带来的无限可能</p>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-value">128</div>
+                    <div class="stat-label">参赛作品</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">参赛团队</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">16</div>
+                    <div class="stat-label">比赛主题</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">比赛天数</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 筛选区域 -->
+    <div class="container">
+        <div class="filters">
+            <button class="filter-btn active">全部作品</button>
+            <button class="filter-btn">人气最高</button>
+            <button class="filter-btn">最新发布</button>
+            <button class="filter-btn">技术奖</button>
+            <button class="filter-btn">创意奖</button>
+            <button class="filter-btn">美术奖</button>
+        </div>
+    </div>
+
+    <!-- 作品展示区 -->
+    <div class="container">
+        <div class="games-grid">
+            <!-- 作品卡片 1 -->
+            <div class="game-card">
+                <div class="game-image">
+                    <div class="game-badge">一等奖</div>
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">星际漫游者</h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-users"></i> 星尘团队</span>
+                        <span><i class="fas fa-heart"></i> 245</span>
+                    </div>
+                    <p class="game-description">在浩瀚宇宙中探索未知星系，解决谜题，收集资源，建立你的太空基地。</p>
+                    <div class="game-tags">
+                        <span class="game-tag">太空探索</span>
+                        <span class="game-tag">解谜</span>
+                        <span class="game-tag">资源管理</span>
+                    </div>
+                    <div class="game-actions">
+                        <a href="#" class="btn btn-primary">立即体验</a>
+                        <a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品卡片 2 -->
+            <div class="game-card">
+                <div class="game-image">
+                    <div class="game-badge">创意奖</div>
+                    <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">时光碎片</h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-users"></i> 时间旅者</span>
+                        <span><i class="fas fa-heart"></i> 198</span>
+                    </div>
+                    <p class="game-description">操纵时间流动，解决精妙的谜题，修复破碎的时间线。</p>
+                    <div class="game-tags">
+                        <span class="game-tag">时间操控</span>
+                        <span class="game-tag">解谜</span>
+                        <span class="game-tag">平台跳跃</span>
+                    </div>
+                    <div class="game-actions">
+                        <a href="#" class="btn btn-primary">立即体验</a>
+                        <a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品卡片 3 -->
+            <div class="game-card">
+                <div class="game-image">
+                    <div class="game-badge">技术奖</div>
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">量子迷宫</h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-users"></i> 量子工作室</span>
+                        <span><i class="fas fa-heart"></i> 176</span>
+                    </div>
+                    <p class="game-description">在量子物理法则驱动的迷宫中寻找出路，利用量子纠缠解决难题。</p>
+                    <div class="game-tags">
+                        <span class="game-tag">物理模拟</span>
+                        <span class="game-tag">解谜</span>
+                        <span class="game-tag">科幻</span>
+                    </div>
+                    <div class="game-actions">
+                        <a href="#" class="btn btn-primary">立即体验</a>
+                        <a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品卡片 4 -->
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">森林守护者</h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-users"></i> 自然之力</span>
+                        <span><i class="fas fa-heart"></i> 154</span>
+                    </div>
+                    <p class="game-description">作为森林守护精灵，平衡生态系统，保护森林免受破坏。</p>
+                    <div class="game-tags">
+                        <span class="game-tag">策略</span>
+                        <span class="game-tag">自然</span>
+                        <span class="game-tag">模拟</span>
+                    </div>
+                    <div class="game-actions">
+                        <a href="#" class="btn btn-primary">立即体验</a>
+                        <a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品卡片 5 -->
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">像素骑士</h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-users"></i> 复古游戏组</span>
+                        <span><i class="fas fa-heart"></i> 142</span>
+                    </div>
+                    <p class="game-description">复古像素风格的平台动作游戏，探索神秘城堡，击败邪恶巫师。</p>
+                    <div class="game-tags">
+                        <span class="game-tag">平台动作</span>
+                        <span class="game-tag">复古</span>
+                        <span class="game-tag">冒险</span>
+                    </div>
+                    <div class="game-actions">
+                        <a href="#" class="btn btn-primary">立即体验</a>
+                        <a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 作品卡片 6 -->
+            <div class="game-card">
+                <div class="game-image">
+                    <div class="game-badge">美术奖</div>
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">水墨江湖</h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-users"></i> 水墨工作室</span>
+                        <span><i class="fas fa-heart"></i> 221</span>
+                    </div>
+                    <p class="game-description">沉浸在水墨画风格的武侠世界中，体验独特的中国风冒险故事。</p>
+                    <div class="game-tags">
+                        <span class="game-tag">武侠</span>
+                        <span class="game-tag">中国风</span>
+                        <span class="game-tag">剧情</span>
+                    </div>
+                    <div class="game-actions">
+                        <a href="#" class="btn btn-primary">立即体验</a>
+                        <a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4 class="footer-title">Jam Showcase</h4>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">展示全球游戏开发者的创意作品，推动游戏开发社区的发展。</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-discord"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">快速链接</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">往期比赛</a></li>
+                        <li><a href="#">作品提交</a></li>
+                        <li><a href="#">排行榜</a></li>
+                        <li><a href="#">常见问题</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">资源</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">开发工具包</a></li>
+                        <li><a href="#">学习资源</a></li>
+                        <li><a href="#">社区论坛</a></li>
+                        <li><a href="#">比赛规则</a></li>
+                        <li><a href="#">赞助商</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">联系我们</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact@jamshowcase.com</li>
+                        <li><i class="fab fa-discord"></i> Discord 社区</li>
+                        <li><i class="fab fa-twitter"></i> @jamshowcase</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Jam Showcase. 保留所有权利。 | ATSPwang618.github.io
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的筛选按钮交互
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // 卡片悬停效果增强
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = "10";
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = "1";
+            });
+        });
+    </script>
+</body>
+</html>
