@@ -227,6 +227,10 @@
             cursor: pointer;
         }
 
+        .game-card.hidden {
+            display: none;
+        }
+
         .game-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(37, 117, 252, 0.2);
@@ -308,45 +312,6 @@
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
-        }
-
-        .game-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            flex: 1;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            box-shadow: 0 0 15px rgba(37, 117, 252, 0.5);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
         }
 
         /* 作品详情模态框 */
@@ -453,6 +418,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: all 0.3s ease;
         }
 
         .screenshots {
@@ -517,6 +483,23 @@
         .modal-description {
             line-height: 1.8;
             color: rgba(255, 255, 255, 0.85);
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .modal-description::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-description::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .modal-description::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
         }
 
         .features {
@@ -532,6 +515,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            background: rgba(37, 117, 252, 0.15);
         }
 
         .feature-icon {
@@ -556,6 +545,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .download-info {
@@ -564,6 +555,41 @@
             gap: 10px;
             color: var(--gray);
             font-size: 0.9rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            box-shadow: 0 0 15px rgba(37, 117, 252, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         /* 页脚 */
@@ -604,6 +630,9 @@
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .footer-links a:hover {
@@ -665,6 +694,11 @@
                 flex-direction: column;
                 gap: 15px;
             }
+
+            .modal-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
 
         @media (max-width: 480px) {
@@ -684,10 +718,13 @@
                 padding: 20px;
             }
             
-            .modal-footer {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
+            .filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -719,11 +756,11 @@
             
             <div class="stats">
                 <div class="stat-box">
-                    <div class="stat-value">？？</div>
+                    <div class="stat-value">38</div>
                     <div class="stat-label">参赛作品</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-value">？？</div>
+                    <div class="stat-value">24</div>
                     <div class="stat-label">参赛团队</div>
                 </div>
                 <div class="stat-box">
@@ -737,20 +774,19 @@
     <!-- 筛选区域 -->
     <div class="container">
         <div class="filters">
-            <button class="filter-btn active">全部作品</button>
-            <button class="filter-btn">最新发布</button>
-            <button class="filter-btn">最佳移植</button>
-            <button class="filter-btn">最佳技术</button>
-            <button class="filter-btn">最佳原创</button>
+            <button class="filter-btn active" data-filter="all">全部作品</button>
+            <button class="filter-btn" data-filter="new">最新发布</button>
+            <button class="filter-btn" data-filter="port">最佳移植</button>
+            <button class="filter-btn" data-filter="tech">最佳技术</button>
+            <button class="filter-btn" data-filter="original">最佳原创</button>
         </div>
     </div>
 
     <!-- 作品展示区 -->
     <div class="container">
         <div class="games-grid">
-            
             <!-- 作品卡片 1 -->
-            <div class="game-card" data-id="1">
+            <div class="game-card" data-id="1" data-category="port">
                 <div class="game-image">
                     <div class="game-badge">最佳移植</div>
                     <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
@@ -771,7 +807,7 @@
             </div>
 
             <!-- 作品卡片 2 -->
-            <div class="game-card" data-id="2">
+            <div class="game-card" data-id="2" data-category="original">
                 <div class="game-image">
                     <div class="game-badge">最佳原创</div>
                     <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
@@ -792,7 +828,7 @@
             </div>
 
             <!-- 作品卡片 3 -->
-            <div class="game-card" data-id="3">
+            <div class="game-card" data-id="3" data-category="tech">
                 <div class="game-image">
                     <div class="game-badge">最佳技术</div>
                     <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
@@ -812,11 +848,10 @@
                 </div>
             </div>
 
-
-            
             <!-- 作品卡片 4 -->
-            <div class="game-card" data-id="4">
+            <div class="game-card" data-id="4" data-category="new">
                 <div class="game-image">
+                    <div class="game-badge">最新发布</div>
                     <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
                 </div>
                 <div class="game-content">
@@ -835,8 +870,9 @@
             </div>
 
             <!-- 作品卡片 5 -->
-            <div class="game-card" data-id="5">
+            <div class="game-card" data-id="5" data-category="port">
                 <div class="game-image">
+                    <div class="game-badge">最佳移植</div>
                     <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
                 </div>
                 <div class="game-content">
@@ -855,8 +891,9 @@
             </div>
 
             <!-- 作品卡片 6 -->
-            <div class="game-card" data-id="6">
+            <div class="game-card" data-id="6" data-category="original">
                 <div class="game-image">
+                    <div class="game-badge">最佳原创</div>
                     <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
                 </div>
                 <div class="game-content">
@@ -876,10 +913,7 @@
         </div>
     </div>
 
-
-
-
-    <!-- 作品详情模态框 ------------------------------------------------------->
+    <!-- 作品详情模态框 -->
     <div class="game-modal" id="gameModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -894,89 +928,47 @@
                         <img id="modalMainImage" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏主图">
                     </div>
                     <div class="screenshots">
-                        <div class="screenshot-thumb active">
-                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="截图1">
-                        </div>
-                        <div class="screenshot-thumb">
-                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="截图2">
-                        </div>
-                        <div class="screenshot-thumb">
-                            <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="截图3">
-                        </div>
+                        <!-- 截图将由JS动态生成 -->
                     </div>
                 </div>
                 <div class="modal-right">
                     <div class="modal-meta">
                         <div class="meta-item">
-                            <div class="meta-value">星尘团队</div>
+                            <div class="meta-value" id="devTeam">星尘团队</div>
                             <div class="meta-label">开发团队</div>
                         </div>
                         <div class="meta-item">
-                            <div class="meta-value">245</div>
+                            <div class="meta-value" id="likesCount">245</div>
                             <div class="meta-label">点赞数</div>
                         </div>
                         <div class="meta-item">
-                            <div class="meta-value">128 MB</div>
+                            <div class="meta-value" id="fileSize">128 MB</div>
                             <div class="meta-label">文件大小</div>
                         </div>
                     </div>
                     
-                    <div class="modal-description">
-                        <p>《星际漫游者》是一款专为PS Vita开发的太空探索游戏，玩家将扮演一名太空探险家，在浩瀚宇宙中探索未知星系。</p>
-                        <p>游戏特点：</p>
-                        <ul>
-                            <li>利用PS Vita的触控屏进行飞船导航和资源收集</li>
-                            <li>支持陀螺仪控制的太空战斗系统</li>
-                            <li>超过20个独特的行星系统可供探索</li>
-                            <li>动态经济系统和基地建设玩法</li>
-                        </ul>
-                        <p>这款游戏充分利用了PS Vita的硬件特性，包括背触板、陀螺仪和OLED屏幕，为玩家带来沉浸式的太空探险体验。</p>
+                    <div class="modal-description" id="gameDescription">
+                        <!-- 描述将由JS动态生成 -->
                     </div>
                     
-                    <div class="features">
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
-                            <div class="feature-text">支持触控和物理按键操作</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-trophy"></i></div>
-                            <div class="feature-text">超过30项成就可解锁</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-save"></i></div>
-                            <div class="feature-text">云存档功能</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-users"></i></div>
-                            <div class="feature-text">多人合作模式</div>
-                        </div>
+                    <div class="features" id="gameFeatures">
+                        <!-- 特性将由JS动态生成 -->
                     </div>
                     
-                    <div class="modal-tags">
-                        <span class="game-tag">太空探索</span>
-                        <span class="game-tag">解谜</span>
-                        <span class="game-tag">资源管理</span>
-                        <span class="game-tag">PSV独占</span>
-                        <span class="game-tag">陀螺仪支持</span>
+                    <div class="modal-tags" id="gameTags">
+                        <!-- 标签将由JS动态生成 -->
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="download-info">
                     <i class="fas fa-download"></i>
-                    <span>下载次数: 1,248 | 最新版本: v1.2.0 | 更新日期: 2025-07-15</span>
+                    <span id="downloadInfo">下载次数: 1,248 | 最新版本: v1.2.0 | 更新日期: 2025-07-15</span>
                 </div>
                 <button class="btn btn-primary">立即下载</button>
             </div>
         </div>
     </div>
-     <!-- 作品详情模态框 ------------------------------------------------------->
-
-
-
-
-
-
     
     <!-- 页脚 -->
     <footer>
@@ -995,19 +987,19 @@
                 <div class="footer-column">
                     <h4 class="footer-title">快速链接</h4>
                     <ul class="footer-links">
-                        <li><a href="#">首页</a></li>
-                        <li><a href="#">关于比赛</a></li>
-                        <li><a href="#">提交作品</a></li>
+                        <li><a href="#"><i class="fas fa-home"></i> 首页</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> 关于比赛</a></li>
+                        <li><a href="#"><i class="fas fa-upload"></i> 提交作品</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h4 class="footer-title">开发指南</h4>
                     <ul class="footer-links">
-                        <li><a href="#">1.vitasdk</a></li>
-                        <li><a href="#">2.unity</a></li>
-                        <li><a href="#">3.so加载器</a></li>
-                        <li><a href="#">4.renpy</a></li>
-                        <li><a href="#">5.artemis</a></li>
+                        <li><a href="#"><i class="fas fa-code"></i> vitasdk</a></li>
+                        <li><a href="#"><i class="fas fa-gamepad"></i> unity</a></li>
+                        <li><a href="#"><i class="fas fa-cogs"></i> so加载器</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> renpy</a></li>
+                        <li><a href="#"><i class="fas fa-paint-brush"></i> artemis</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1026,7 +1018,7 @@
     </footer>
 
     <script>
-        // 游戏数据
+        // 完整的游戏数据
         const gamesData = {
             1: {
                 title: "星际漫游者",
@@ -1043,6 +1035,7 @@
                 downloads: 1248,
                 version: "v1.2.0",
                 updated: "2025-07-15",
+                fileSize: "128 MB",
                 image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 screenshots: [
                     "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
@@ -1050,8 +1043,6 @@
                     "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
                 ]
             },
-
-            
             2: {
                 title: "时光碎片",
                 team: "时间旅者",
@@ -1067,6 +1058,7 @@
                 downloads: 987,
                 version: "v1.1.5",
                 updated: "2025-06-20",
+                fileSize: "95 MB",
                 image: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 screenshots: [
                     "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
@@ -1074,7 +1066,6 @@
                     "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
                 ]
             },
-            
             3: {
                 title: "量子迷宫",
                 team: "量子工作室",
@@ -1090,9 +1081,79 @@
                 downloads: 845,
                 version: "v1.3.2",
                 updated: "2025-07-05",
+                fileSize: "156 MB",
                 image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                 screenshots: [
                     "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                ]
+            },
+            4: {
+                title: "森林守护者",
+                team: "自然之力",
+                likes: 154,
+                description: "《森林守护者》是一款生态模拟游戏，玩家扮演森林守护精灵，通过平衡生态系统来保护森林免受破坏。游戏充分利用了PS Vita的OLED屏幕，展现出令人惊叹的自然美景和细腻的色彩表现。",
+                features: [
+                    "动态生态系统模拟",
+                    "PS Vita OLED屏幕优化",
+                    "超过30种动植物生态链",
+                    "触控笔支持植物培育"
+                ],
+                tags: ["策略", "自然", "模拟", "生态", "PSV独占"],
+                downloads: 732,
+                version: "v1.0.8",
+                updated: "2025-06-10",
+                fileSize: "102 MB",
+                image: "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                screenshots: [
+                    "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                ]
+            },
+            5: {
+                title: "像素骑士",
+                team: "复古游戏组",
+                likes: 142,
+                description: "《像素骑士》是一款复古像素风格的平台动作游戏，玩家将探索神秘城堡，击败邪恶巫师。游戏完美还原了经典16位游戏机的视觉风格，同时针对PS Vita的按键布局进行了优化。",
+                features: [
+                    "经典的16位像素美术风格",
+                    "PS Vita物理按键优化支持",
+                    "8个独特关卡和隐藏区域",
+                    "复古芯片音乐音效"
+                ],
+                tags: ["平台动作", "复古", "冒险", "像素风", "怀旧"],
+                downloads: 689,
+                version: "v1.2.3",
+                updated: "2025-05-28",
+                fileSize: "78 MB",
+                image: "https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                screenshots: [
+                    "https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                ]
+            },
+            6: {
+                title: "水墨江湖",
+                team: "水墨工作室",
+                likes: 221,
+                description: "《水墨江湖》是一款水墨画风格的武侠冒险游戏，玩家将沉浸在中国传统水墨画的世界中，体验独特的武侠故事。游戏充分利用了PS Vita的触控笔功能，支持手写书法和绘画互动。",
+                features: [
+                    "独特的水墨画艺术风格",
+                    "PS Vita触控笔书法系统",
+                    "非线性武侠剧情",
+                    "动态水墨渲染技术"
+                ],
+                tags: ["武侠", "中国风", "剧情", "水墨", "触控笔"],
+                downloads: 1124,
+                version: "v1.5.0",
+                updated: "2025-07-22",
+                fileSize: "189 MB",
+                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                screenshots: [
+                    "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
                 ]
@@ -1105,6 +1166,7 @@
         const modalGameTitle = document.getElementById('modalGameTitle');
         const modalMainImage = document.getElementById('modalMainImage');
         const gameCards = document.querySelectorAll('.game-card');
+        const filterButtons = document.querySelectorAll('.filter-btn');
 
         // 打开模态框
         function openGameModal(gameId) {
@@ -1115,8 +1177,17 @@
             modalGameTitle.textContent = game.title;
             modalMainImage.src = game.image;
             
+            // 更新开发团队
+            document.getElementById('devTeam').textContent = game.team;
+            
+            // 更新点赞数
+            document.getElementById('likesCount').textContent = game.likes;
+            
+            // 更新文件大小
+            document.getElementById('fileSize').textContent = game.fileSize;
+            
             // 更新游戏描述
-            document.querySelector('.modal-description').innerHTML = `
+            document.getElementById('gameDescription').innerHTML = `
                 <p>${game.description}</p>
                 <p>游戏特点：</p>
                 <ul>
@@ -1124,18 +1195,23 @@
                 </ul>
             `;
             
+            // 更新特性
+            const featuresContainer = document.getElementById('gameFeatures');
+            featuresContainer.innerHTML = game.features.map(feature => `
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="feature-text">${feature}</div>
+                </div>
+            `).join('');
+            
             // 更新标签
-            const tagsContainer = document.querySelector('.modal-tags');
+            const tagsContainer = document.getElementById('gameTags');
             tagsContainer.innerHTML = game.tags.map(tag => 
                 `<span class="game-tag">${tag}</span>`
             ).join('');
             
-            // 更新元数据
-            document.querySelector('.meta-item:nth-child(1) .meta-value').textContent = game.team;
-            document.querySelector('.meta-item:nth-child(2) .meta-value').textContent = game.likes;
-            
             // 更新下载信息
-            document.querySelector('.download-info span').textContent = 
+            document.getElementById('downloadInfo').textContent = 
                 `下载次数: ${game.downloads} | 最新版本: ${game.version} | 更新日期: ${game.updated}`;
             
             // 更新截图
@@ -1166,14 +1242,27 @@
             document.body.style.overflow = 'auto';
         }
 
+        // 筛选功能
+        function filterGames(category) {
+            gameCards.forEach(card => {
+                if (category === 'all') {
+                    card.classList.remove('hidden');
+                } else {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (cardCategory === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
         // 事件监听
         gameCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // 确保不是点击按钮触发的
-                if (!e.target.closest('.btn')) {
-                    const gameId = card.getAttribute('data-id');
-                    openGameModal(gameId);
-                }
+            card.addEventListener('click', () => {
+                const gameId = card.getAttribute('data-id');
+                openGameModal(gameId);
             });
         });
 
@@ -1193,18 +1282,18 @@
             }
         });
 
-        // 简单的筛选按钮交互
-        document.querySelectorAll('.filter-btn').forEach(button => {
+        // 筛选按钮事件
+        filterButtons.forEach(button => {
             button.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
+                filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
+                const filter = this.getAttribute('data-filter');
+                filterGames(filter);
             });
         });
 
         // 卡片悬停效果增强
-        document.querySelectorAll('.game-card').forEach(card => {
+        gameCards.forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.zIndex = "10";
             });
