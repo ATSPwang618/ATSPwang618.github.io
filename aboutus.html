@@ -1,1 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 | PS Vita自制游戏大赛</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        :root{
+            --primary:#6a11cb;
+            --secondary:#2575fc;
+            --accent:#00f2fe;
+            --dark:#0f0c29;
+            --darker:#080616;
+            --light:#f8f9fa;
+            --gray:#6c757d;
+            --success:#00c9a7;
+            --warning:#ffd166;
+            --danger:#ff6b6b;
+            --modal-bg:rgba(8, 6, 22, 0.95);
+        }
+        body{
+            font-family:'Roboto',sans-serif;
+            background:url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/web-bg2.webp') no-repeat center center fixed;
+            background-size:cover;
+            color:var(--light);
+            min-height:100vh;
+            line-height:1.6;
+            overflow-x:hidden;
+            position:relative;
+        }
+        body::before{
+            content:'';
+            position:absolute;
+            top:0;left:0;
+            width:100%;height:100%;
+            background-color:rgba(15, 12, 41, 0.5);
+            z-index:-2;
+        }
+        body::after{
+            content:'';
+            position:absolute;
+            top:0;left:0;
+            width:100%;height:100%;
+            background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" opacity="0.08"><path d="M150,100 C100,150 50,200 100,300 C150,350 250,350 300,300 C350,250 400,250 450,250 C500,250 550,250 600,250 C650,250 700,200 700,150 C700,100 650,50 600,50 C550,50 500,100 450,100 C400,100 350,50 300,50 C250,50 200,100 150,100 Z" fill="white"/><rect x="300" y="150" width="100" height="50" rx="10" fill="white"/><rect x="325" y="200" width="50" height="50" rx="10" fill="white"/><circle cx="250" cy="150" r="20" fill="white"/><circle cx="550" cy="150" r="20" fill="white"/></svg>') no-repeat center center;
+            background-size:80% auto;
+            z-index:-1;
+            opacity:0.15;
+        }
+        .container{width:90%;max-width:1200px;margin:0 auto;padding:0 20px;}
+        header{
+            background:rgba(15, 12, 41, 0.85);
+            backdrop-filter:blur(10px);
+            padding:15px 0;
+            position:sticky;
+            top:0;
+            z-index:1000;
+            border-bottom:1px solid rgba(106, 17, 203, 0.3);
+        }
+        .navbar{display:flex;justify-content:space-between;align-items:center;}
+        .logo{display:flex;align-items:center;gap:12px;font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.8rem;color:white;text-decoration:none;}
+        .logo-icon{color:var(--accent);font-size:2.2rem;}
+        .nav-links{display:flex;gap:30px;}
+        .nav-links a{color:var(--light);text-decoration:none;font-weight:500;font-size:1.1rem;position:relative;transition:all 0.3s ease;}
+        .nav-links a:hover{color:var(--accent);}
+        .nav-links a::after{
+            content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s ease;
+        }
+        .nav-links a:hover::after{width:100%;}
+        .hero{
+            padding:80px 0 50px;
+            text-align:center;
+            position:relative;
+            overflow:hidden;
+        }
+        .hero::before{
+            content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+            background:radial-gradient(circle at center, rgba(106, 17, 203, 0.15), transparent 70%);
+            z-index:-1;
+        }
+        .hero h1{
+            font-family:'Orbitron',sans-serif;
+            font-size:3.5rem;
+            margin-bottom:20px;
+            background:linear-gradient(90deg,var(--accent),var(--secondary));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            text-shadow:0 0 20px rgba(37, 117, 252, 0.3);
+        }
+        .hero p{
+            font-size:1.3rem;
+            max-width:700px;
+            margin:0 auto 40px;
+            color:rgba(255,255,255,0.85);
+        }
+        .about-container{
+            background:rgba(15, 12, 41, 0.7);
+            border-radius:15px;
+            padding:40px;
+            margin:40px auto;
+            border:1px solid rgba(106, 17, 203, 0.3);
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+            position:relative;
+            overflow:hidden;
+        }
+        .about-container::before{
+            content:'';
+            position:absolute;top:0;left:0;width:100%;height:100%;
+            background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.02"><rect x="0" y="0" width="100" height="100" fill="none" stroke="%236a11cb" stroke-width="2"/><circle cx="150" cy="50" r="30" fill="none" stroke="%232575fc" stroke-width="2"/><polygon points="100,150 50,180 70,120 30,80 80,80 100,20 120,80 170,80 130,120 150,180" fill="none" stroke="%2300f2fe" stroke-width="2"/></svg>');
+            z-index:-1;
+        }
+        .about-header{text-align:center;margin-bottom:40px;}
+        .about-header h2{font-family:'Orbitron',sans-serif;font-size:2.5rem;color:var(--accent);margin-bottom:15px;}
+        .about-header p{color:var(--gray);max-width:800px;margin:0 auto;font-size:1.1rem;}
+        .about-content p{color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:20px;}
+        footer{
+            background:rgba(8, 6, 22, 0.9);
+            padding:40px 0;
+            border-top:1px solid rgba(106, 17, 203, 0.3);
+            margin-top:60px;
+        }
+        .footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;}
+        .footer-column{flex:1;min-width:250px;}
+        .footer-title{font-family:'Orbitron',sans-serif;font-size:1.3rem;margin-bottom:20px;color:var(--accent);}
+        .footer-links{list-style:none;}
+        .footer-links li{margin-bottom:10px;}
+        .footer-links a{color:rgba(255,255,255,0.7);text-decoration:none;transition:color 0.3s ease;display:flex;align-items:center;gap:8px;}
+        .footer-links a:hover{color:var(--accent);}
+        .copyright{text-align:center;padding-top:30px;margin-top:30px;border-top:1px solid rgba(106, 17, 203, 0.2);color:rgba(255,255,255,0.5);font-size:0.9rem;}
+        @media(max-width:768px){.navbar{flex-direction:column;gap:20px;}}
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-gamepad logo-icon"></i>
+                    <span>PSVITA HOMEBREW</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">首页</a>
+                    <a href="#">作品提交</a>
+                    <a href="manual.html">比赛说明</a>
+                    <a href="aboutus.html" class="active">关于我们</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="hero">
+        <div class="container">
+            <h1>关于我们</h1>
+            <p>了解本次大赛的发起团队与背后的故事</p>
+        </div>
+    </section>
+
+    <!-- 内容 -->
+    <div class="container">
+        <div class="about-container">
+            <div class="about-header">
+                <h2><i class="fas fa-users"></i> 组织团队</h2>
+                <p>我们是一群热爱PSV平台和Homebrew文化的开发者、玩家与爱好者</p>
+            </div>
+            <div class="about-content">
+                <p>本次大赛由 <strong>@PSVita破解吧</strong> 社区主办，核心成员包括经验丰富的程序员、像素艺术家、音乐制作人以及测试团队。我们致力于推广PSV平台的自制游戏开发，让更多优秀的原创与移植作品被发现和认可。</p>
+                <p>团队不仅为参赛者提供技术支持与资源指导，还会确保比赛的公平公正。我们希望通过这个平台，让新手开发者获得展示的机会，也让老玩家找到新的乐趣。</p>
+                <p>无论你是初学者还是资深开发者，只要你热爱创作与分享，这里都是你的舞台。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4 class="footer-title">@PSVita破解吧</h4>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">PSVITA自制社区永不会死亡！！</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-weibo"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-qq"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-bilibili"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">快速链接</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                        <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> 关于我们</a></li>
+                        <li><a href="#"><i class="fas fa-upload"></i> 提交作品</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">开发指南</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-code"></i> vitasdk</a></li>
+                        <li><a href="#"><i class="fas fa-gamepad"></i> unity</a></li>
+                        <li><a href="#"><i class="fas fa-cogs"></i> so加载器</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> renpy</a></li>
+                        <li><a href="#"><i class="fas fa-paint-brush"></i> artemis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">联系我们</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact：ATSPwang</li>
+                        <li><i class="fab fa-qq"></i> QQ群: 450789696</li>
+                        <li><i class="fab fa-bilibili"></i> B站: @Zarathusitra @核心玩家大川</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 本比赛禁止分享游戏数据  | 请使用个人正版游戏资源整合
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-links a').forEach(link=>{
+                if(link.getAttribute('href') === currentPage){
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
 
