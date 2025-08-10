@@ -34,6 +34,23 @@
             min-height: 100vh;
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative; /* Added for pseudo-element positioning */
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0c/PlayStation_Vita_layout.svg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15; /* Semi-transparent silhouette */
+            z-index: -1;
+            pointer-events: none;
         }
 
         .container {
@@ -408,6 +425,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <header>
@@ -466,139 +484,3 @@
                     <div class="rule-number">3</div>
                     <div class="rule-content">
                         <h3>平台独占要求</h3>
-                        <p>在比赛结果公布之前，<span class="rule-highlight">最佳原创游戏奖项的参赛作品必须是PSV平台独占</span>。</p>
-                        <p>最佳移植奖项则无此限制，但作品需要针对PSV平台进行特别优化。</p>
-                    </div>
-                </div>
-                
-                <!-- 规则 4 -->
-                <div class="rule-card">
-                    <div class="rule-number">4</div>
-                    <div class="rule-content">
-                        <h3>源代码要求</h3>
-                        <p>项目可以不用开源，但如果存在可能的违规行为（例如植入恶意代码或者盗取他人代码），<span class="rule-highlight">参赛者必须能够根据评委的要求出示源代码</span>。</p>
-                        <p>所有提交的作品不得包含任何恶意程序或侵犯他人知识产权的代码。</p>
-                    </div>
-                </div>
-                
-                <!-- 规则 5 -->
-                <div class="rule-card">
-                    <div class="rule-number">5</div>
-                    <div class="rule-content">
-                        <h3>版权与资源使用</h3>
-                        <p><span class="rule-highlight">禁止任何形式的盗版</span>。如果项目必须使用受版权保护的资源或非免费数据文件，开发者不能将完整VPK直接打包放出。</p>
-                        <p>应当设计一种可以让玩家自行整合所需数据的方法（例如通过Steam上已购的正版游戏中进行整合）。</p>
-                    </div>
-                </div>
-                
-                <!-- 规则 6 -->
-                <div class="rule-card">
-                    <div class="rule-number">6</div>
-                    <div class="rule-content">
-                        <h3>作品首发要求</h3>
-                        <p><span class="rule-highlight">参赛作品必须是大赛开始前（2025年10月08日）从未公开发布过的</span>。</p>
-                        <p>包括但不限于在GitHub、论坛、个人网站等任何公开平台发布的版本。</p>
-                    </div>
-                </div>
-                
-                <!-- 规则 7 -->
-                <div class="rule-card">
-                    <div class="rule-number">7</div>
-                    <div class="rule-content">
-                        <h3>大赛LOGO展示</h3>
-                        <p><span class="rule-highlight">参赛作品必须在启动页面显示本次自制大赛的LOGO</span>。</p>
-                        <p>LOGO文件将在作品提交时提供，需在启动画面中至少显示3秒钟。</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 时间线 -->
-            <div class="rule-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-title">作品提交开始</div>
-                    <div class="timeline-date">2025-10-08</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-title">作品提交截止</div>
-                    <div class="timeline-date">2025-12-15</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-title">结果公布</div>
-                    <div class="timeline-date">2026-01-10</div>
-                </div>
-            </div>
-            
-            <!-- LOGO展示 -->
-            <div class="logo-display">
-                <h3>大赛LOGO示例</h3>
-                <div class="logo-preview">
-                    <div class="logo-text">PSVITA自制大赛</div>
-                </div>
-                <p>所有参赛作品需在启动画面中展示此LOGO至少3秒钟</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 页脚 -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h4 class="footer-title">@PSVita破解吧</h4>
-                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">PSVITA自制社区永不会死亡！！</p>
-                    <div style="display: flex; gap: 15px;">
-                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-weibo"></i></a>
-                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-qq"></i></a>
-                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
-                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-bilibili"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h4 class="footer-title">快速链接</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
-                        <li><a href="#"><i class="fas fa-info-circle"></i> 关于比赛</a></li>
-                        <li><a href="#"><i class="fas fa-upload"></i> 提交作品</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4 class="footer-title">开发指南</h4>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-code"></i> vitasdk</a></li>
-                        <li><a href="#"><i class="fas fa-gamepad"></i> unity</a></li>
-                        <li><a href="#"><i class="fas fa-cogs"></i> so加载器</a></li>
-                        <li><a href="#"><i class="fas fa-book"></i> renpy</a></li>
-                        <li><a href="#"><i class="fas fa-paint-brush"></i> artemis</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4 class="footer-title">联系我们</h4>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> contact：ATSPwang</li>
-                        <li><i class="fab fa-qq"></i> QQ群: 450789696</li>
-                        <li><i class="fab fa-bilibili"></i> B站: @Zarathusitra @核心玩家大川</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 本比赛禁止分享游戏数据  | 请使用个人正版游戏资源整合
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // 导航栏当前页面高亮
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            navLinks.forEach(link => {
-                const linkPage = link.getAttribute('href');
-                if (linkPage === currentPage) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
