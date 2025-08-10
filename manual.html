@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>比赛规则 | ATSPwang618</title>
+    <title>比赛说明 | PS Vita自制游戏大赛</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -34,7 +34,7 @@
             min-height: 100vh;
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative; /* Added for pseudo-element positioning */
+            position: relative;
         }
 
         body::before {
@@ -44,11 +44,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0c/PlayStation_Vita_layout.svg');
-            background-size: contain;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/PlayStation_Vita_illustration.svg/1280px-PlayStation_Vita_illustration.svg.png');
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.15; /* Semi-transparent silhouette */
+            opacity: 0.15; /* 半透明效果 */
             z-index: -1;
             pointer-events: none;
         }
@@ -162,160 +162,45 @@
             color: rgba(255, 255, 255, 0.85);
         }
 
-        /* 规则区域样式 */
+        /* 规则区域 */
         .rules-section {
-            padding: 50px 0 80px;
-        }
-
-        .rules-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            padding: 50px 0;
         }
 
         .rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 30px;
         }
 
         .rule-card {
             background: rgba(15, 12, 41, 0.7);
             border-radius: 15px;
-            padding: 30px;
+            overflow: hidden;
             position: relative;
-            border: 1px solid rgba(106, 17, 203, 0.3);
-            transition: all 0.4s ease;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(106, 17, 203, 0.3);
+            padding: 20px;
         }
 
         .rule-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(37, 117, 252, 0.2);
             border-color: rgba(37, 117, 252, 0.6);
         }
 
         .rule-number {
-            position: absolute;
-            top: -15px;
-            left: 30px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
-        }
-
-        .rule-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
             color: var(--accent);
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .rule-content p {
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.8;
-        }
-
-        .rule-highlight {
-            background: rgba(37, 117, 252, 0.15);
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        .rule-timeline {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(106, 17, 203, 0.3);
-        }
-
-        .timeline-item {
-            text-align: center;
-            flex: 1;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid rgba(106, 17, 203, 0.3);
-        }
-
-        .timeline-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
             margin-bottom: 10px;
-            color: var(--accent);
         }
 
-        .timeline-date {
-            font-size: 1.1rem;
-            color: var(--light);
-        }
-
-        .logo-display {
-            text-align: center;
-            margin: 50px 0;
-            padding: 30px;
-            background: rgba(15, 12, 41, 0.7);
-            border-radius: 15px;
-            border: 1px solid rgba(106, 17, 203, 0.3);
-        }
-
-        .logo-preview {
-            width: 300px;
-            height: 150px;
-            margin: 20px auto;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-preview::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                45deg,
-                rgba(255, 255, 255, 0.05),
-                rgba(255, 255, 255, 0.05) 10px,
-                rgba(255, 255, 255, 0.1) 10px,
-                rgba(255, 255, 255, 0.1) 20px
-            );
-        }
-
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--accent), white);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        .rule-description {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* 页脚 */
@@ -379,11 +264,6 @@
             .rules-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .rule-timeline {
-                flex-direction: column;
-                gap: 15px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -399,14 +279,6 @@
             .hero p {
                 font-size: 1.1rem;
             }
-
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .rule-card {
-                padding: 25px 20px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -414,18 +286,16 @@
                 font-size: 2rem;
             }
             
-            .rules-grid {
-                gap: 20px;
+            .rule-card {
+                padding: 15px;
             }
             
-            .logo-preview {
-                width: 100%;
-                max-width: 300px;
+            .rule-number {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
-
 <body>
     <!-- 导航栏 -->
     <header>
@@ -436,9 +306,9 @@
                     <span>PSVITA HOMEBREW</span>
                 </a>
                 <div class="nav-links">
-                    <a href="index.html">首页</a>
+                    <a href="index.html">首页</a> <!-- 假设首页是index.html -->
                     <a href="#">作品提交</a>
-                    <a href="manual.html" class="active">比赛说明</a>
+                    <a href="manual.html">比赛说明</a>
                     <a href="#">关于我们</a>
                 </div>
             </nav>
@@ -448,39 +318,106 @@
     <!-- 英雄区域 -->
     <section class="hero">
         <div class="container">
-            <h1>2025 PS VITA 自制游戏大赛</h1>
-            <p>了解比赛规则，准备您的参赛作品！</p>
+            <h1>比赛说明</h1>
+            <p>欢迎参加2025 PS VITA 自制游戏大赛！以下是详细的比赛规则，请仔细阅读并遵守。</p>
         </div>
     </section>
 
-    <!-- 规则区域 -->
+    <!-- 规则展示区 -->
     <section class="rules-section">
-        <div class="container rules-container">
-            <h2 class="section-title">比赛规则说明</h2>
-            
+        <div class="container">
             <div class="rules-grid">
-                <!-- 规则 1 -->
+                <!-- 规则卡片 1 -->
                 <div class="rule-card">
-                    <div class="rule-number">1</div>
-                    <div class="rule-content">
-                        <h3>提交数量与奖项限制</h3>
-                        <p>每位参与者的提交数量不限，但<span class="rule-highlight">每位参与者最多只能获得一个奖项</span>。</p>
-                        <p>同一团队提交多个作品时，评委会将根据作品质量综合评定奖项归属。</p>
+                    <div class="rule-number">规则 1</div>
+                    <p class="rule-description">每位参与者的提交数量不限，但每位参与者最多只能获得一个奖项。</p>
+                </div>
+
+                <!-- 规则卡片 2 -->
+                <div class="rule-card">
+                    <div class="rule-number">规则 2</div>
+                    <p class="rule-description">由于是国内PSV自制大赛，参赛作品必须支持中文。</p>
+                </div>
+
+                <!-- 规则卡片 3 -->
+                <div class="rule-card">
+                    <div class="rule-number">规则 3</div>
+                    <p class="rule-description">在比赛结果公布之前，最佳原创游戏奖项的参与者，项目必须是PSV平台独占，最佳移植奖项则无此限制。</p>
+                </div>
+
+                <!-- 规则卡片 4 -->
+                <div class="rule-card">
+                    <div class="rule-number">规则 4</div>
+                    <p class="rule-description">项目可以不用开源，但是，如果存在可能的违规行为（例如植入恶意代码或者盗取他人代码），参赛者必须能够根据评委的要求出示源代码。</p>
+                </div>
+
+                <!-- 规则卡片 5 -->
+                <div class="rule-card">
+                    <div class="rule-number">规则 5</div>
+                    <p class="rule-description">禁止任何形式的盗版。如果项目必须使用受版权保护的资源或非免费数据文件，开发者不能将完整VPK直接打包放出，应当设计一种可以让玩家自行整合所需数据的方法（例如通过Steam 上已购的正版游戏中进行整合）。</p>
+                </div>
+
+                <!-- 规则卡片 6 -->
+                <div class="rule-card">
+                    <div class="rule-number">规则 6</div>
+                    <p class="rule-description">参赛作品必须是大赛开始前（2025年10月08日）从未公开发布过的。</p>
+                </div>
+
+                <!-- 规则卡片 7 -->
+                <div class="rule-card">
+                    <div class="rule-number">规则 7</div>
+                    <p class="rule-description">参赛作品必须在启动页面显示本次自制大赛的LOGO。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4 class="footer-title">@PSVita破解吧</h4>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">PSVITA自制社区永不会死亡！！</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-weibo"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-qq"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-bilibili"></i></a>
                     </div>
                 </div>
-                
-                <!-- 规则 2 -->
-                <div class="rule-card">
-                    <div class="rule-number">2</div>
-                    <div class="rule-content">
-                        <h3>语言支持要求</h3>
-                        <p>由于是国内PSV自制大赛，<span class="rule-highlight">参赛作品必须支持中文</span>。</p>
-                        <p>作品界面、操作说明和游戏内文本都应提供完整的中文版本。多语言支持是加分项，但中文是必须项。</p>
-                    </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">快速链接</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-home"></i> 首页</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> 关于比赛</a></li>
+                        <li><a href="#"><i class="fas fa-upload"></i> 提交作品</a></li>
+                    </ul>
                 </div>
-                
-                <!-- 规则 3 -->
-                <div class="rule-card">
-                    <div class="rule-number">3</div>
-                    <div class="rule-content">
-                        <h3>平台独占要求</h3>
+                <div class="footer-column">
+                    <h4 class="footer-title">开发指南</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-code"></i> vitasdk</a></li>
+                        <li><a href="#"><i class="fas fa-gamepad"></i> unity</a></li>
+                        <li><a href="#"><i class="fas fa-cogs"></i> so加载器</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> renpy</a></li>
+                        <li><a href="#"><i class="fas fa-paint-brush"></i> artemis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">联系我们</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact：ATSPwang</li>
+                        <li><i class="fab fa-qq"></i> QQ群: 450789696</li>
+                        <li><i class="fab fa-bilibili"></i> B站: @Zarathusitra @核心玩家大川</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 本比赛禁止分享游戏数据  | 请使用个人正版游戏资源整合
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
