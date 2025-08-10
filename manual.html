@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>比赛说明 | PS Vita自制游戏大赛</title>
+    <title>比赛规则 | PS Vita自制游戏大赛</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -37,6 +37,7 @@
             position: relative;
         }
 
+        /* PS Vita剪影背景 */
         body::before {
             content: '';
             position: absolute;
@@ -44,18 +45,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/PlayStation_Vita_illustration.svg/1280px-PlayStation_Vita_illustration.svg.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.15; /* 半透明效果 */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" opacity="0.08"><path d="M150,100 C100,150 50,200 100,300 C150,350 250,350 300,300 C350,250 400,250 450,250 C500,250 550,250 600,250 C650,250 700,200 700,150 C700,100 650,50 600,50 C550,50 500,100 450,100 C400,100 350,50 300,50 C250,50 200,100 150,100 Z" fill="white"/><rect x="300" y="150" width="100" height="50" rx="10" fill="white"/><rect x="325" y="200" width="50" height="50" rx="10" fill="white"/><circle cx="250" cy="150" r="20" fill="white"/><circle cx="550" cy="150" r="20" fill="white"/></svg>') no-repeat center center;
+            background-size: 80% auto;
             z-index: -1;
-            pointer-events: none;
+            opacity: 0.15;
         }
 
         .container {
             width: 90%;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -162,45 +160,134 @@
             color: rgba(255, 255, 255, 0.85);
         }
 
-        /* 规则区域 */
-        .rules-section {
-            padding: 50px 0;
-        }
-
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .rule-card {
+        /* 规则容器 */
+        .rules-container {
             background: rgba(15, 12, 41, 0.7);
             border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            padding: 40px;
+            margin: 40px auto;
             border: 1px solid rgba(106, 17, 203, 0.3);
-            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .rule-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(37, 117, 252, 0.2);
-            border-color: rgba(37, 117, 252, 0.6);
+        .rules-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.02"><rect x="0" y="0" width="100" height="100" fill="none" stroke="%236a11cb" stroke-width="2"/><circle cx="150" cy="50" r="30" fill="none" stroke="%232575fc" stroke-width="2"/><polygon points="100,150 50,180 70,120 30,80 80,80 100,20 120,80 170,80 130,120 150,180" fill="none" stroke="%2300f2fe" stroke-width="2"/></svg>');
+            z-index: -1;
         }
 
-        .rule-number {
+        .rules-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .rules-header h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .rule-description {
+        .rules-header p {
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .rules-list {
+            counter-reset: rule-counter;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .rule-item {
+            display: flex;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(15, 12, 41, 0.5);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rule-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--secondary);
+            background: rgba(15, 12, 41, 0.8);
+        }
+
+        .rule-item::before {
+            counter-increment: rule-counter;
+            content: counter(rule-counter);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .rule-content {
+            margin-left: 70px;
+        }
+
+        .rule-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .rule-content p {
             color: rgba(255, 255, 255, 0.85);
-            font-size: 1rem;
-            line-height: 1.6;
+            line-height: 1.8;
+        }
+
+        .rule-highlight {
+            background: rgba(37, 117, 252, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .important-note {
+            background: rgba(255, 107, 107, 0.15);
+            border-left: 4px solid var(--danger);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .important-note i {
+            color: var(--danger);
+            font-size: 1.8rem;
+            margin-top: 5px;
+        }
+
+        .note-content h3 {
+            color: var(--danger);
+            margin-bottom: 10px;
         }
 
         /* 页脚 */
@@ -208,6 +295,7 @@
             background: rgba(8, 6, 22, 0.9);
             padding: 40px 0;
             border-top: 1px solid rgba(106, 17, 203, 0.3);
+            margin-top: 60px;
         }
 
         .footer-content {
@@ -261,8 +349,12 @@
 
         /* 响应式设计 */
         @media (max-width: 992px) {
-            .rules-grid {
-                grid-template-columns: 1fr;
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .rules-header h2 {
+                font-size: 2.2rem;
             }
         }
 
@@ -279,6 +371,22 @@
             .hero p {
                 font-size: 1.1rem;
             }
+            
+            .rule-item {
+                padding: 20px 15px;
+            }
+            
+            .rule-content {
+                margin-left: 55px;
+            }
+            
+            .rule-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .rules-container {
+                padding: 25px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -286,12 +394,24 @@
                 font-size: 2rem;
             }
             
-            .rule-card {
-                padding: 15px;
+            .rules-header h2 {
+                font-size: 1.8rem;
             }
             
-            .rule-number {
-                font-size: 1.5rem;
+            .rule-item::before {
+                top: 15px;
+                left: 15px;
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+            
+            .rule-content {
+                margin-left: 45px;
+            }
+            
+            .rules-container {
+                padding: 20px 15px;
             }
         }
     </style>
@@ -301,14 +421,14 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">
+                <a href="index.html" class="logo">
                     <i class="fas fa-gamepad logo-icon"></i>
                     <span>PSVITA HOMEBREW</span>
                 </a>
                 <div class="nav-links">
-                    <a href="index.html">首页</a> <!-- 假设首页是index.html -->
+                    <a href="index.html">首页</a>
                     <a href="#">作品提交</a>
-                    <a href="manual.html">比赛说明</a>
+                    <a href="manual.html" class="active">比赛说明</a>
                     <a href="#">关于我们</a>
                 </div>
             </nav>
@@ -318,60 +438,87 @@
     <!-- 英雄区域 -->
     <section class="hero">
         <div class="container">
-            <h1>比赛说明</h1>
-            <p>欢迎参加2025 PS VITA 自制游戏大赛！以下是详细的比赛规则，请仔细阅读并遵守。</p>
+            <h1>PS Vita自制游戏大赛规则</h1>
+            <p>详细说明参赛规则与注意事项，确保比赛公平公正</p>
         </div>
     </section>
 
-    <!-- 规则展示区 -->
-    <section class="rules-section">
-        <div class="container">
-            <div class="rules-grid">
-                <!-- 规则卡片 1 -->
-                <div class="rule-card">
-                    <div class="rule-number">规则 1</div>
-                    <p class="rule-description">每位参与者的提交数量不限，但每位参与者最多只能获得一个奖项。</p>
+    <!-- 规则内容 -->
+    <div class="container">
+        <div class="rules-container">
+            <div class="rules-header">
+                <h2><i class="fas fa-book-open"></i> 比赛规则说明</h2>
+                <p>请仔细阅读以下参赛规则，提交作品即表示同意遵守所有规定</p>
+            </div>
+            
+            <div class="rules-list">
+                <!-- 规则1 -->
+                <div class="rule-item">
+                    <div class="rule-content">
+                        <h3>参赛作品数量限制</h3>
+                        <p>每位参与者的提交数量不限，但每位参与者最多只能获得一个奖项。这是为了确保更多参赛者有机会获得认可。</p>
+                    </div>
                 </div>
-
-                <!-- 规则卡片 2 -->
-                <div class="rule-card">
-                    <div class="rule-number">规则 2</div>
-                    <p class="rule-description">由于是国内PSV自制大赛，参赛作品必须支持中文。</p>
+                
+                <!-- 规则2 -->
+                <div class="rule-item">
+                    <div class="rule-content">
+                        <h3>中文支持要求</h3>
+                        <p>由于是国内PSV自制大赛，参赛作品必须支持中文。包括游戏界面、菜单、字幕和游戏内文本等核心内容。</p>
+                    </div>
                 </div>
-
-                <!-- 规则卡片 3 -->
-                <div class="rule-card">
-                    <div class="rule-number">规则 3</div>
-                    <p class="rule-description">在比赛结果公布之前，最佳原创游戏奖项的参与者，项目必须是PSV平台独占，最佳移植奖项则无此限制。</p>
+                
+                <!-- 规则3 -->
+                <div class="rule-item">
+                    <div class="rule-content">
+                        <h3>平台独占要求</h3>
+                        <p>在比赛结果公布之前，<span class="rule-highlight">最佳原创游戏奖项</span>的参与者，项目必须是PSV平台独占；<span class="rule-highlight">最佳移植奖项</span>则无此限制。</p>
+                    </div>
                 </div>
-
-                <!-- 规则卡片 4 -->
-                <div class="rule-card">
-                    <div class="rule-number">规则 4</div>
-                    <p class="rule-description">项目可以不用开源，但是，如果存在可能的违规行为（例如植入恶意代码或者盗取他人代码），参赛者必须能够根据评委的要求出示源代码。</p>
+                
+                <!-- 规则4 -->
+                <div class="rule-item">
+                    <div class="rule-content">
+                        <h3>源代码要求</h3>
+                        <p>项目可以不用开源，但如果存在可能的违规行为（例如植入恶意代码或者盗取他人代码），参赛者必须能够根据评委的要求出示源代码。</p>
+                    </div>
                 </div>
-
-                <!-- 规则卡片 5 -->
-                <div class="rule-card">
-                    <div class="rule-number">规则 5</div>
-                    <p class="rule-description">禁止任何形式的盗版。如果项目必须使用受版权保护的资源或非免费数据文件，开发者不能将完整VPK直接打包放出，应当设计一种可以让玩家自行整合所需数据的方法（例如通过Steam 上已购的正版游戏中进行整合）。</p>
+                
+                <!-- 规则5 -->
+                <div class="rule-item">
+                    <div class="rule-content">
+                        <h3>版权与盗版规定</h3>
+                        <p>禁止任何形式的盗版。如果项目必须使用受版权保护的资源或非免费数据文件，开发者<span class="rule-highlight">不能将完整VPK直接打包放出</span>，应当设计一种可以让玩家自行整合所需数据的方法（例如通过Steam上已购的正版游戏中进行整合）。</p>
+                    </div>
                 </div>
-
-                <!-- 规则卡片 6 -->
-                <div class="rule-card">
-                    <div class="rule-number">规则 6</div>
-                    <p class="rule-description">参赛作品必须是大赛开始前（2025年10月08日）从未公开发布过的。</p>
+                
+                <!-- 规则6 -->
+                <div class="rule-item">
+                    <div class="rule-content">
+                        <h3>作品发布时间要求</h3>
+                        <p>参赛作品必须是大赛开始前（<span class="rule-highlight">2025年10月08日</span>）从未公开发布过的全新作品。</p>
+                    </div>
                 </div>
-
-                <!-- 规则卡片 7 -->
-                <div class="rule-card">
-                    <div class="rule-number">规则 7</div>
-                    <p class="rule-description">参赛作品必须在启动页面显示本次自制大赛的LOGO。</p>
+                
+                <!-- 规则7 -->
+                <div class="rule-item">
+                    <div class="rule-content">
+                        <h3>大赛LOGO展示要求</h3>
+                        <p>所有参赛作品必须在启动页面显示本次自制大赛的LOGO，持续时间不少于3秒。LOGO文件将在报名后通过邮件发送。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="important-note">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="note-content">
+                    <h3>重要注意事项</h3>
+                    <p>违反上述任何规则的作品将被取消参赛资格。评委的决定为最终决定，不接受任何申诉。请确保在提交前仔细检查您的作品是否符合所有要求。如有疑问，请联系大赛组委会。</p>
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
+    
     <!-- 页脚 -->
     <footer>
         <div class="container">
@@ -389,7 +536,7 @@
                 <div class="footer-column">
                     <h4 class="footer-title">快速链接</h4>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-home"></i> 首页</a></li>
+                        <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
                         <li><a href="#"><i class="fas fa-info-circle"></i> 关于比赛</a></li>
                         <li><a href="#"><i class="fas fa-upload"></i> 提交作品</a></li>
                     </ul>
@@ -419,5 +566,31 @@
         </div>
     </footer>
 
+    <script>
+        // 添加导航栏活动状态
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (currentPage === linkPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // 添加规则项的交互动画
+            const ruleItems = document.querySelectorAll('.rule-item');
+            ruleItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
