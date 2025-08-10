@@ -39,12 +39,7 @@ header{background:rgba(15,12,41,0.85);backdrop-filter:blur(10px);padding:15px 0;
 .game-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .game-tag{background:rgba(37,117,252,0.15);color:var(--accent);padding:5px 12px;border-radius:20px;font-size:0.8rem}
 .modal-image{height:400px}
-.screenshots {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px; /* 缩略图之间间距加大 */
-}
-   
+.screenshot-thumb{height:120px}
 .pagination{display:flex;justify-content:center;gap:10px;padding:10px}
 .page-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(106,17,203,0.3);color:var(--light);padding:8px 16px;border-radius:5px;cursor:pointer}
 .page-btn:hover{background:linear-gradient(90deg,var(--primary),var(--secondary))}
@@ -118,7 +113,6 @@ header{background:rgba(15,12,41,0.85);backdrop-filter:blur(10px);padding:15px 0;
 </div>
 </div>
 <script>
-
 const gamesData = [
     {
         id: 1,
