@@ -28,13 +28,41 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--darker), var(--dark));
-            color: var(--light);
-            min-height: 100vh;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    font-family: 'Roboto', sans-serif;
+    background: url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/web-bg2.webp') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--light);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+    
+    body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 12, 41, 0.5); /* 半透明深色遮罩，避免文字看不清 */
+    z-index: -2;
+}
+
+    /* 保留PS Vita剪影层，但放在遮罩上面 */
+    body::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" opacity="0.08"><path d="M150,100 C100,150 50,200 100,300 C150,350 250,350 300,300 C350,250 400,250 450,250 C500,250 550,250 600,250 C650,250 700,200 700,150 C700,100 650,50 600,50 C550,50 500,100 450,100 C400,100 350,50 300,50 C250,50 200,100 150,100 Z" fill="white"/><rect x="300" y="150" width="100" height="50" rx="10" fill="white"/><rect x="325" y="200" width="50" height="50" rx="10" fill="white"/><circle cx="250" cy="150" r="20" fill="white"/><circle cx="550" cy="150" r="20" fill="white"/></svg>') no-repeat center center;
+        background-size: 80% auto;
+        z-index: -1;
+        opacity: 0.15;
+    }
 
         .container {
             width: 90%;
