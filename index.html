@@ -1407,3 +1407,26 @@
         document.querySelectorAll('.game-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.zIndex = "10";
+            });
+        });
+
+        // 点赞功能
+        document.querySelectorAll('.fa-heart').forEach(heart => {
+            heart.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const countElement = this.nextElementSibling;
+                let count = parseInt(countElement.textContent);
+                count++;
+                countElement.textContent = count;
+                
+                // 添加动画效果
+                this.style.color = "#ff6b6b";
+                this.style.transform = "scale(1.2)";
+                setTimeout(() => {
+                    this.style.transform = "scale(1)";
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
