@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* 所有原有样式保持不变 */
         * {
             margin: 0;
             padding: 0;
@@ -28,41 +29,39 @@
         }
 
         body {
-    font-family: 'Roboto', sans-serif;
-    background: url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/web-bg3.webp') no-repeat center center fixed;
-    background-size: cover;
-    color: var(--light);
-    min-height: 100vh;
-    line-height: 1.6;
-    overflow-x: hidden;
-    position: relative;
-}
+            font-family: 'Roboto', sans-serif;
+            background: url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/web-bg3.webp') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    
-    body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(15, 12, 41, 0.5); /* 半透明深色遮罩，避免文字看不清 */
-    z-index: -2;
-}
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 12, 41, 0.5);
+            z-index: -2;
+        }
 
-    /* 保留PS Vita剪影层，但放在遮罩上面 */
-    body::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" opacity="0.08"><path d="M150,100 C100,150 50,200 100,300 C150,350 250,350 300,300 C350,250 400,250 450,250 C500,250 550,250 600,250 C650,250 700,200 700,150 C700,100 650,50 600,50 C550,50 500,100 450,100 C400,100 350,50 300,50 C250,50 200,100 150,100 Z" fill="white"/><rect x="300" y="150" width="100" height="50" rx="10" fill="white"/><rect x="325" y="200" width="50" height="50" rx="10" fill="white"/><circle cx="250" cy="150" r="20" fill="white"/><circle cx="550" cy="150" r="20" fill="white"/></svg>') no-repeat center center;
-        background-size: 80% auto;
-        z-index: -1;
-        opacity: 0.15;
-    }
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" opacity="0.08"><path d="M150,100 C100,150 50,200 100,300 C150,350 250,350 300,300 C350,250 400,250 450,250 C500,250 550,250 600,250 C650,250 700,200 700,150 C700,100 650,50 600,50 C550,50 500,100 450,100 C400,100 350,50 300,50 C250,50 200,100 150,100 Z" fill="white"/><rect x="300" y="150" width="100" height="50" rx="10" fill="white"/><rect x="325" y="200" width="50" height="50" rx="10" fill="white"/><circle cx="250" cy="150" r="20" fill="white"/><circle cx="550" cy="150" r="20" fill="white"/></svg>') no-repeat center center;
+            background-size: 80% auto;
+            z-index: -1;
+            opacity: 0.15;
+        }
 
         .container {
             width: 90%;
@@ -771,7 +770,6 @@
                     <a href="#">作品提交</a>
                     <a href="manual.html">比赛说明</a>
                     <a href="aboutus.html">关于我们</a> 
-
                 </div>
             </nav>
         </div>
@@ -785,11 +783,11 @@
             
             <div class="stats">
                 <div class="stat-box">
-                    <div class="stat-value">？？？</div>
+                    <div class="stat-value">32</div>
                     <div class="stat-label">参赛作品</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-value">？？？</div>
+                    <div class="stat-value">18</div>
                     <div class="stat-label">参赛团队</div>
                 </div>
                 <div class="stat-box">
@@ -817,7 +815,7 @@
             <div class="game-card" data-id="1" data-category="port">
                 <div class="game-image">
                     <div class="game-badge">最佳移植</div>
-                    <img src="https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/作品/TEST-作品/game-1-logo.jpg" alt="游戏封面">
+                    <img src="https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/main/%E4%BD%9C%E5%93%81/TEST-%E4%BD%9C%E5%93%81/game-1-logo.jpg" alt="游戏封面">
                 </div>
                 <div class="game-content">
                     <h3 class="game-title">《HARMONIA》</h3>
@@ -879,7 +877,6 @@
             <!-- 作品卡片 4 -->
             <div class="game-card" data-id="4" data-category="new">
                 <div class="game-image">
-                    
                     <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
                 </div>
                 <div class="game-content">
@@ -900,7 +897,6 @@
             <!-- 作品卡片 5 -->
             <div class="game-card" data-id="5" data-category="port">
                 <div class="game-image">
-                    
                     <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
                 </div>
                 <div class="game-content">
@@ -921,7 +917,6 @@
             <!-- 作品卡片 6 -->
             <div class="game-card" data-id="6" data-category="tech">
                 <div class="game-image">
-                    
                     <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="游戏封面">
                 </div>
                 <div class="game-content">
@@ -945,7 +940,7 @@
     <div class="game-modal" id="gameModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="modalGameTitle">星际漫游者</h2>
+                <h2 class="modal-title" id="modalGameTitle">游戏详情</h2>
                 <div class="close-modal" id="closeModal">
                     <i class="fas fa-times"></i>
                 </div>
@@ -962,15 +957,15 @@
                 <div class="modal-right">
                     <div class="modal-meta">
                         <div class="meta-item">
-                            <div class="meta-value" id="devTeam">星尘团队</div>
+                            <div class="meta-value" id="devTeam">开发团队</div>
                             <div class="meta-label">开发团队</div>
                         </div>
                         <div class="meta-item">
-                            <div class="meta-value" id="likesCount">245</div>
+                            <div class="meta-value" id="likesCount">0</div>
                             <div class="meta-label">点赞数</div>
                         </div>
                         <div class="meta-item">
-                            <div class="meta-value" id="fileSize">128 MB</div>
+                            <div class="meta-value" id="fileSize">0 MB</div>
                             <div class="meta-label">文件大小</div>
                         </div>
                     </div>
@@ -991,7 +986,7 @@
             <div class="modal-footer">
                 <div class="download-info">
                     <i class="fas fa-download"></i>
-                    <span id="downloadInfo">下载次数: 1,248 | 最新版本: v1.2.0 | 更新日期: 2025-07-15</span>
+                    <span id="downloadInfo">下载次数: 0 | 最新版本: v0.0.0 | 更新日期: 2025-00-00</span>
                 </div>
                 <button class="btn btn-primary">立即下载</button>
             </div>
@@ -1049,25 +1044,27 @@
         // 完整的游戏数据
         const gamesData = {
             1: {
-                title: "《harmonia》",
+                title: "《HARMONIA》",
                 team: "@Zarathusitra",
-                likes: 245,
-                description: "这是一个未来故事。一场巨大的战争使世界充满污染。灰烬覆盖了天空，土地没有植被，水源也干涸了。人口因此急遽减少，剩下的人类挤在一起生存。在此期间，一个拥有感情机能的机器人少年在破败的工厂中苏醒了。在战争之前，科学创造了这些能体验感情的仿生机器人。然而，醒来不久机器人意识到它自己的感情机能没有运作，而且它的右手没有仿生皮肤。而与人类相伴是这位机械少年的愿望。于是它踏上了取回丢失感情的旅途。
-该仿生机器人来到一座城镇郊区时，被一位少女诗音那（シオナ，声优：水桥香织[2]）所发现，她将它带到她所居住的临时搭建小镇教堂中，该名少女将这位无名的仿生机器人命名为“黎”。为了回报她，“黎”决定修复坏掉的音乐盒。而当“黎”去图书馆找如何维修的书籍时，遇见一位一直在哭泣的少女提比（ティピィ，声优：久野美咲[2]）。",
+                likes: 1400,
+                description: "这是一个未来故事。一场巨大的战争使世界充满污染。灰烬覆盖了天空，土地没有植被，水源也干涸了。人口因此急遽减少，剩下的人类挤在一起生存。在此期间，一个拥有感情机能的机器人少年在破败的工厂中苏醒了。在战争之前，科学创造了这些能体验感情的仿生机器人。然而，醒来不久机器人意识到它自己的感情机能没有运作，而且它的右手没有仿生皮肤。而与人类相伴是这位机械少年的愿望。于是它踏上了取回丢失感情的旅途。该仿生机器人来到一座城镇郊区时，被一位少女诗音那（シオナ）所发现，她将它带到她所居住的临时搭建小镇教堂中，该名少女将这位无名的仿生机器人命名为“黎”。为了回报她，“黎”决定修复坏掉的音乐盒。而当“黎”去图书馆找如何维修的书籍时，遇见一位一直在哭泣的少女提比（ティピィ）。",
                 features: [
                     "针对PS Vita的按键进行了优化",
-                    "key社经典作品",
+                    "Key社经典作品",
+                    "完整的日文配音",
+                    "支持触屏操作",
+                    "游戏时长约10小时"
                 ],
                 tags: ["感人", "治愈", "温暖", "PSV移植", "artemis engine"],
-                downloads: 1248,
-                version: "v0.1.0",
+                downloads: 2480,
+                version: "v1.0.0",
                 updated: "2025-08-10",
-                fileSize: "1500 MB",
-                image: "https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/作品/TEST-作品/game-1-logo.jpg",
+                fileSize: "1.2 GB",
+                image: "https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/main/%E4%BD%9C%E5%93%81/TEST-%E4%BD%9C%E5%93%81/game-1-logo.jpg",
                 screenshots: [
-                    "https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/作品/TEST-作品/game-1-截图1.jpg",
-                    "https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/作品/TEST-作品/game-1-截图2.jpg",
-                    "https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/作品/TEST-作品/game-1-截图3.jpg"
+                    "https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/main/%E4%BD%9C%E5%93%81/TEST-%E4%BD%9C%E5%93%81/game-1-%E6%88%AA%E5%9B%BE1.jpg",
+                    "https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/main/%E4%BD%9C%E5%93%81/TEST-%E4%BD%9C%E5%93%81/game-1-%E6%88%AA%E5%9B%BE2.jpg",
+                    "https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/main/%E4%BD%9C%E5%93%81/TEST-%E4%BD%9C%E5%93%81/game-1-%E6%88%AA%E5%9B%BE3.jpg"
                 ]
             },
             2: {
@@ -1192,8 +1189,8 @@
         const closeModal = document.getElementById('closeModal');
         const modalGameTitle = document.getElementById('modalGameTitle');
         const modalMainImage = document.getElementById('modalMainImage');
-        const gameCards = document.querySelectorAll('.game-card');
         const filterButtons = document.querySelectorAll('.filter-btn');
+        const gamesGrid = document.querySelector('.games-grid');
 
         // 打开模态框
         function openGameModal(gameId) {
@@ -1216,10 +1213,6 @@
             // 更新游戏描述
             document.getElementById('gameDescription').innerHTML = `
                 <p>${game.description}</p>
-                <p>游戏特点：</p>
-                <ul>
-                    ${game.features.map(feature => `<li>${feature}</li>`).join('')}
-                </ul>
             `;
             
             // 更新特性
@@ -1251,7 +1244,8 @@
             
             // 添加截图点击事件
             document.querySelectorAll('.screenshot-thumb').forEach((thumb, index) => {
-                thumb.addEventListener('click', () => {
+                thumb.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     modalMainImage.src = game.screenshots[index];
                     document.querySelectorAll('.screenshot-thumb').forEach(t => t.classList.remove('active'));
                     thumb.classList.add('active');
@@ -1271,7 +1265,8 @@
 
         // 筛选功能
         function filterGames(category) {
-            gameCards.forEach(card => {
+            const cards = document.querySelectorAll('.game-card');
+            cards.forEach(card => {
                 if (category === 'all') {
                     card.classList.remove('hidden');
                 } else {
@@ -1286,11 +1281,13 @@
         }
 
         // 事件监听
-        gameCards.forEach(card => {
-            card.addEventListener('click', () => {
+        // 修复：使用事件委托绑定卡片点击事件
+        gamesGrid.addEventListener('click', function(e) {
+            const card = e.target.closest('.game-card');
+            if (card) {
                 const gameId = card.getAttribute('data-id');
                 openGameModal(gameId);
-            });
+            }
         });
 
         closeModal.addEventListener('click', closeGameModal);
@@ -1320,7 +1317,7 @@
         });
 
         // 卡片悬停效果增强
-        gameCards.forEach(card => {
+        document.querySelectorAll('.game-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.zIndex = "10";
             });
