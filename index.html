@@ -7,42 +7,169 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* 基础样式保持原样，关键改动在截图大小与分页按钮 */
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--primary:#6a11cb;--secondary:#2575fc;--accent:#00f2fe;--dark:#0f0c29;--darker:#080616;--light:#f8f9fa;--gray:#6c757d;--success:#00c9a7;--warning:#ffd166;--danger:#ff6b6b;--modal-bg:rgba(8,6,22,0.95)}
-body{font-family:'Roboto',sans-serif;background:url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/web-bg3.webp') no-repeat center center fixed;background-size:cover;color:var(--light);min-height:100vh;line-height:1.6;overflow-x:hidden;position:relative}
-body::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(15,12,41,0.5);z-index:-2}
+:root{
+  --primary:#6a11cb;
+  --secondary:#2575fc;
+  --accent:#00f2fe;
+  --dark:#0f0c29;
+  --darker:#080616;
+  --light:#f8f9fa;
+  --gray:#6c757d;
+  --success:#00c9a7;
+  --modal-bg:rgba(8,6,22,0.95)
+}
+body{
+  font-family:'Roboto',sans-serif;
+  background:url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/web-bg3.webp') no-repeat center center fixed;
+  background-size:cover;
+  color:var(--light);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative
+}
+body::before{
+  content:'';
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background-color:rgba(15,12,41,0.5);
+  z-index:-2
+}
 .container{width:90%;max-width:1400px;margin:0 auto;padding:0 20px}
-header{background:rgba(15,12,41,0.85);backdrop-filter:blur(10px);padding:15px 0;position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(106,17,203,0.3)}
+header{
+  background:rgba(15,12,41,0.85);
+  backdrop-filter:blur(10px);
+  padding:15px 0;
+  position:sticky;
+  top:0;z-index:1000;
+  border-bottom:1px solid rgba(106,17,203,0.3)
+}
 .navbar{display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:12px;font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.8rem;color:white;text-decoration:none}
+.logo{
+  display:flex;align-items:center;gap:12px;
+  font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.8rem;
+  color:white;text-decoration:none
+}
 .logo-icon{color:var(--accent);font-size:2.2rem}
 .nav-links{display:flex;gap:30px}
-.nav-links a{color:var(--light);text-decoration:none;font-weight:500;font-size:1.1rem;position:relative;transition:all 0.3s ease}
+.nav-links a{
+  color:var(--light);text-decoration:none;
+  font-weight:500;font-size:1.1rem;
+  transition:all 0.3s ease
+}
 .nav-links a:hover{color:var(--accent)}
-.hero{padding:80px 0 50px;text-align:center}
-.hero h1{font-family:'Orbitron',sans-serif;font-size:3.5rem;margin-bottom:20px;background:linear-gradient(90deg,var(--accent),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero{text-align:center;padding:80px 0 50px}
+.hero h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:3.5rem;margin-bottom:20px;
+  background:linear-gradient(90deg,var(--accent),var(--secondary));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent
+}
 .filters{display:flex;justify-content:center;gap:15px;margin:30px 0;flex-wrap:wrap}
-.filter-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(106,17,203,0.3);color:var(--light);padding:10px 20px;border-radius:30px;cursor:pointer;transition:all 0.3s ease;font-size:1rem}
-.filter-btn:hover,.filter-btn.active{background:linear-gradient(90deg,var(--primary),var(--secondary));border-color:transparent}
-.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:30px;padding:30px 0 40px}
-.game-card{background:rgba(15,12,41,0.7);border-radius:15px;overflow:hidden;position:relative;box-shadow:0 10px 20px rgba(0,0,0,0.3);transition:transform 0.4s ease;border:1px solid rgba(106,17,203,0.3);cursor:pointer}
+.filter-btn{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(106,17,203,0.3);
+  color:var(--light);padding:10px 20px;border-radius:30px;
+  cursor:pointer;transition:all 0.3s ease;
+  font-size:1rem
+}
+.filter-btn:hover,.filter-btn.active{
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  border-color:transparent
+}
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:30px;padding:30px 0 40px
+}
+.game-card{
+  background:rgba(15,12,41,0.7);
+  border-radius:15px;overflow:hidden;position:relative;
+  box-shadow:0 10px 20px rgba(0,0,0,0.3);
+  transition:transform 0.4s ease;
+  border:1px solid rgba(106,17,203,0.3);
+  cursor:pointer
+}
 .game-card:hover{transform:translateY(-10px)}
 .game-image{height:200px;width:100%;position:relative;overflow:hidden}
 .game-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
 .game-card:hover .game-image img{transform:scale(1.05)}
-.game-badge{position:absolute;top:15px;right:15px;background:var(--success);color:var(--darker);padding:5px 10px;border-radius:20px;font-size:0.8rem;font-weight:700;z-index:2}
+.game-badge{
+  position:absolute;top:15px;right:15px;
+  background:var(--success);color:var(--darker);
+  padding:5px 10px;border-radius:20px;
+  font-size:0.8rem;font-weight:700;z-index:2
+}
 .game-content{padding:20px}
 .game-title{font-family:'Orbitron',sans-serif;font-size:1.4rem;margin-bottom:10px;color:white}
-.game-meta{display:flex;justify-content:space-between;color:var(--gray);font-size:0.9rem;margin-bottom:15px}
-.game-description{color:rgba(255,255,255,0.7);margin-bottom:20px;font-size:0.95rem;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.game-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.game-tag{background:rgba(37,117,252,0.15);color:var(--accent);padding:5px 12px;border-radius:20px;font-size:0.8rem}
-.modal-image{height:400px}
-.screenshot-thumb{height:120px}
+.game-meta{color:var(--gray);font-size:0.9rem;margin-bottom:15px}
+.game-description{
+  color:rgba(255,255,255,0.7);
+  margin-bottom:20px;font-size:0.95rem;
+  display:-webkit-box;-webkit-line-clamp:3;
+  -webkit-box-orient:vertical;overflow:hidden
+}
+.game-tags{display:flex;gap:8px;flex-wrap:wrap}
+.game-tag{
+  background:rgba(37,117,252,0.15);
+  color:var(--accent);
+  padding:5px 12px;border-radius:20px;
+  font-size:0.8rem
+}
 .pagination{display:flex;justify-content:center;gap:10px;padding:10px}
-.page-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(106,17,203,0.3);color:var(--light);padding:8px 16px;border-radius:5px;cursor:pointer}
+.page-btn{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(106,17,203,0.3);
+  color:var(--light);padding:8px 16px;border-radius:5px;
+  cursor:pointer
+}
 .page-btn:hover{background:linear-gradient(90deg,var(--primary),var(--secondary))}
+
+/* 模态框样式 */
+.game-modal{
+  display:none;position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  background:var(--modal-bg);
+  z-index:2000;overflow-y:auto;
+  padding:40px 20px
+}
+.modal-content{
+  background:rgba(15,12,41,0.9);
+  border-radius:15px;
+  max-width:1000px;margin:auto;
+  padding:20px
+}
+.modal-header{
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  padding-bottom:10px;margin-bottom:15px
+}
+.modal-title{font-family:'Orbitron',sans-serif;font-size:1.8rem}
+.close-modal{cursor:pointer;font-size:1.5rem;color:var(--accent)}
+.modal-body{display:flex;gap:20px;flex-wrap:wrap}
+.modal-left{flex:1;min-width:300px}
+.modal-image{
+  height:400px;margin-bottom:15px
+}
+.modal-image img{
+  width:100%;height:100%;object-fit:cover;border-radius:8px
+}
+.screenshots{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px
+}
+.screenshot-thumb{
+  height:140px;border-radius:8px;overflow:hidden;cursor:pointer
+}
+.screenshot-thumb img{
+  width:100%;height:100%;object-fit:cover
+}
+.modal-right{flex:1;min-width:300px}
+.modal-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.modal-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:20px
+}
 </style>
 </head>
 <body>
@@ -59,12 +186,14 @@ header{background:rgba(15,12,41,0.85);backdrop-filter:blur(10px);padding:15px 0;
 </nav>
 </div>
 </header>
+
 <section class="hero">
 <div class="container">
 <h1>2025 PS VITA 自制游戏大赛</h1>
 <p>探索来自国内PS Vita自制社区的独特作品，感受掌机游戏的魅力！</p>
 </div>
 </section>
+
 <div class="container">
 <div class="filters">
 <button class="filter-btn active" data-filter="all">全部作品</button>
@@ -78,6 +207,7 @@ header{background:rgba(15,12,41,0.85);backdrop-filter:blur(10px);padding:15px 0;
 <button class="page-btn" id="nextPage">下一页</button>
 </div>
 </div>
+
 <!-- 模态框 -->
 <div class="game-modal" id="gameModal">
 <div class="modal-content">
@@ -88,31 +218,20 @@ header{background:rgba(15,12,41,0.85);backdrop-filter:blur(10px);padding:15px 0;
 <div class="modal-body">
 <div class="modal-left">
 <div class="modal-image"><img id="modalMainImage" src="" alt="游戏主图"></div>
-<div class="screenshots"></div>
+<div class="screenshots" id="modalScreenshots"></div>
 </div>
 <div class="modal-right">
-<div class="modal-meta">
-<div class="meta-item">
-<div class="meta-value" id="devTeam">开发团队</div>
-<div class="meta-label">开发团队</div>
-</div>
-<div class="meta-item">
-<div class="meta-value" id="fileSize">0 MB</div>
-<div class="meta-label">文件大小</div>
-</div>
-</div>
+<div><strong>开发团队：</strong><span id="devTeam"></span></div>
+<div><strong>文件大小：</strong><span id="fileSize"></span></div>
 <div class="modal-description" id="gameDescription"></div>
-<div class="features" id="gameFeatures"></div>
 <div class="modal-tags" id="gameTags"></div>
 </div>
 </div>
-<div class="modal-footer">
-<div class="download-info"><i class="fas fa-download"></i><span id="downloadInfo"></span></div>
-<button class="btn btn-primary">立即下载</button>
 </div>
 </div>
-</div>
+
 <script>
+// 数据
 const gamesData = [
     {
         id: 1,
@@ -267,26 +386,77 @@ const gamesData = [
     }
 ];
 
-const gamesGrid=document.querySelector('.games-grid');
-const filterBtns=document.querySelectorAll('.filter-btn');
-const prevPageBtn=document.getElementById('prevPage');
-const nextPageBtn=document.getElementById('nextPage');
-let currentPage=1;const itemsPerPage=6;let currentFilter='all';
+const gamesGrid = document.querySelector('.games-grid');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const prevPageBtn = document.getElementById('prevPage');
+const nextPageBtn = document.getElementById('nextPage');
+let currentPage = 1;
+const itemsPerPage = 6;
+let currentFilter = 'all';
+
 function renderGames(){
-gamesGrid.innerHTML='';
-const filtered=currentFilter==='all'?gamesData:gamesData.filter(g=>g.category===currentFilter);
-const start=(currentPage-1)*itemsPerPage;const end=start+itemsPerPage;
-filtered.slice(start,end).forEach(game=>{
-gamesGrid.innerHTML+=`<div class="game-card" data-id="${game.id}">
-<div class="game-image"><div class="game-badge">${game.badge||'参赛作品'}</div><img src="${game.image}" alt=""></div>
-<div class="game-content"><h3 class="game-title">${game.title}</h3><div class="game-meta"><span><i class="fas fa-users"></i> ${game.team}</span></div>
-<p class="game-description">${game.description}</p>
-<div class="game-tags">${game.tags.map(t=>`<span class="game-tag">${t}</span>`).join('')}</div></div></div>`;
-});
+  gamesGrid.innerHTML = '';
+  const filtered = currentFilter==='all' ? gamesData : gamesData.filter(g=>g.category===currentFilter);
+  const start = (currentPage-1)*itemsPerPage;
+  const end = start+itemsPerPage;
+  filtered.slice(start,end).forEach(game=>{
+    gamesGrid.innerHTML += `
+      <div class="game-card" data-id="${game.id}">
+        <div class="game-image">
+          <div class="game-badge">${game.badge||'参赛作品'}</div>
+          <img src="${game.image}" alt="">
+        </div>
+        <div class="game-content">
+          <h3 class="game-title">${game.title}</h3>
+          <div class="game-meta"><i class="fas fa-users"></i> ${game.team}</div>
+          <p class="game-description">${game.description}</p>
+          <div class="game-tags">${game.tags.map(t=>`<span class="game-tag">${t}</span>`).join('')}</div>
+        </div>
+      </div>`;
+  });
 }
-filterBtns.forEach(btn=>{btn.onclick=()=>{filterBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.dataset.filter;currentPage=1;renderGames();}});
-prevPageBtn.onclick=()=>{if(currentPage>1){currentPage--;renderGames();}};
-nextPageBtn.onclick=()=>{const totalFiltered=currentFilter==='all'?gamesData.length:gamesData.filter(g=>g.category===currentFilter).length;if(currentPage<Math.ceil(totalFiltered/itemsPerPage)){currentPage++;renderGames();}};
+
+function openModal(game){
+  document.getElementById('modalGameTitle').textContent = game.title;
+  document.getElementById('devTeam').textContent = game.team;
+  document.getElementById('fileSize').textContent = game.fileSize;
+  document.getElementById('gameDescription').textContent = game.description;
+  document.getElementById('gameTags').innerHTML = game.tags.map(t=>`<span class="game-tag">${t}</span>`).join('');
+  document.getElementById('modalMainImage').src = game.image;
+  document.getElementById('modalScreenshots').innerHTML = game.screenshots.map(src=>`<div class="screenshot-thumb"><img src="${src}"></div>`).join('');
+  document.getElementById('gameModal').style.display = 'block';
+}
+
+// 事件绑定
+document.addEventListener('click', e=>{
+  if(e.target.closest('.game-card')){
+    const id = parseInt(e.target.closest('.game-card').dataset.id);
+    const game = gamesData.find(g=>g.id===id);
+    openModal(game);
+  }
+  if(e.target.closest('#closeModal')){
+    document.getElementById('gameModal').style.display = 'none';
+  }
+});
+
+filterBtns.forEach(btn=>{
+  btn.onclick = ()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    currentPage = 1;
+    renderGames();
+  }
+});
+
+prevPageBtn.onclick = ()=>{
+  if(currentPage>1){ currentPage--; renderGames(); }
+}
+nextPageBtn.onclick = ()=>{
+  const totalFiltered = currentFilter==='all' ? gamesData.length : gamesData.filter(g=>g.category===currentFilter).length;
+  if(currentPage<Math.ceil(totalFiltered/itemsPerPage)){ currentPage++; renderGames(); }
+}
+
 renderGames();
 </script>
 </body>
