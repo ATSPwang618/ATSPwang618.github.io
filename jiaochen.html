@@ -9,29 +9,28 @@
 <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     :root {
-            --primary: #6a11cb;
-            --secondary: #2575fc;
-            --accent: #00f2fe;
-            --dark: #0f0c29;
-            --darker: #080616;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --success: #00c9a7;
-            --warning: #ffd166;
-            --danger: #ff6b6b;
-            --modal-bg: rgba(8, 6, 22, 0.95);
-        }
-   body {
-            font-family: 'Roboto', sans-serif;
-            background: url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/bg-1.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--light);
-            min-height: 100vh;
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-
+        --primary: #6a11cb;
+        --secondary: #2575fc;
+        --accent: #00f2fe;
+        --dark: #0f0c29;
+        --darker: #080616;
+        --light: #f8f9fa;
+        --gray: #6c757d;
+        --success: #00c9a7;
+        --warning: #ffd166;
+        --danger: #ff6b6b;
+        --modal-bg: rgba(8, 6, 22, 0.95);
+    }
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/bg-1.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: var(--light);
+        min-height: 100vh;
+        line-height: 1.6;
+        overflow-x: hidden;
+        position: relative;
+    }
     body::before{
         content:'';position:absolute;top:0;left:0;width:100%;height:100%;
         backdrop-filter:blur(6px);
@@ -46,7 +45,6 @@
         top:0;
         z-index:1000;
         border-bottom:1px solid rgba(255,255,255,0.15);
-        box-shadow:var(--shadow);
     }
     .navbar{display:flex;justify-content:space-between;align-items:center;}
     .logo{display:flex;align-items:center;gap:12px;font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.8rem;color:var(--light);text-decoration:none;}
@@ -61,89 +59,106 @@
         content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s ease;
     }
     .nav-links a:hover::after{width:100%;}
+    .menu-toggle{
+        display:none;
+        font-size:1.8rem;
+        cursor:pointer;
+        color:var(--light);
+    }
     .hero{
-        padding:80px 0 50px;
+        padding:60px 0 30px;
         text-align:center;
     }
     .hero h1{
         font-family:'Orbitron',sans-serif;
-        font-size:3.5rem;
-        margin-bottom:20px;
+        font-size:3rem;
+        margin-bottom:15px;
         background:linear-gradient(90deg,var(--accent),var(--secondary));
         -webkit-background-clip:text;
         -webkit-text-fill-color:transparent;
     }
     .hero p{
-        font-size:1.3rem;
+        font-size:1.1rem;
         max-width:700px;
-        margin:0 auto 40px;
+        margin:0 auto 30px;
         color:rgba(255,255,255,0.85);
     }
     .guide-section{
-        background:var(--glass-bg);
+        background:rgba(255,255,255,0.05);
         border-radius:15px;
-        padding:30px;
-        margin-bottom:40px;
+        padding:20px;
+        margin-bottom:25px;
         border:1px solid rgba(255,255,255,0.15);
         backdrop-filter:blur(10px);
-        box-shadow:var(--shadow);
     }
     .guide-section h2{
         font-family:'Orbitron',sans-serif;
-        font-size:2rem;
-        margin-bottom:15px;
+        font-size:1.5rem;
+        margin-bottom:10px;
         color:var(--accent);
     }
     .guide-section ul{
         list-style:none;
         padding-left:0;
-    }
-    .guide-section li{
-        margin-bottom:12px;
-    }
-    .guide-section a{
-        color:var(--accent);
-        text-decoration:none;
-    }
-    .guide-section a:hover{
-        color:var(--secondary);
-        text-decoration:underline;
+        word-break:break-word;
     }
     section.block {
         background-color: rgba(255, 255, 255, 0.05);
         border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 30px;
+        padding: 10px;
+        margin-bottom: 20px;
         backdrop-filter:blur(8px);
-        box-shadow:0 4px 12px rgba(0,0,0,0.1);
     }
-    section.block h2 {margin-top: 0;margin-bottom: 10px;color: var(--light);}
-    section.block a {color: var(--accent);}
-    section.block a:hover {text-decoration: underline;}
     footer{
         background:rgba(0,0,0,0.3);
         backdrop-filter:blur(10px);
-        padding:40px 0;
+        padding:30px 0;
         border-top:1px solid rgba(255,255,255,0.15);
-        margin-top:60px;
-        box-shadow:var(--shadow);
+        margin-top:40px;
     }
-    .footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;}
-    .footer-column{flex:1;min-width:250px;}
-    .footer-title{font-family:'Orbitron',sans-serif;font-size:1.3rem;margin-bottom:20px;color:var(--accent);}
+    .footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+    .footer-column{flex:1;min-width:200px;}
+    .footer-title{font-family:'Orbitron',sans-serif;font-size:1.2rem;margin-bottom:10px;color:var(--accent);}
     .footer-links{list-style:none;}
-    .footer-links li{margin-bottom:10px;}
+    .footer-links li{margin-bottom:8px;}
     .footer-links a{color:rgba(255,255,255,0.7);text-decoration:none;display:flex;align-items:center;gap:8px;}
     .footer-links a:hover{color:var(--accent);}
     .copyright{
         text-align:center;
-        padding-top:30px;
-        margin-top:30px;
+        padding-top:20px;
+        margin-top:20px;
         border-top:1px solid rgba(255,255,255,0.15);
         color:rgba(255,255,255,0.6);
-        font-size:0.9rem;
+        font-size:0.85rem;
+    }
+    /* 手机端优化 */
+    @media (max-width:768px){
+        .hero h1{font-size:2.2rem;}
+        .hero p{font-size:1rem;}
+        .nav-links{
+            display:none;
+            flex-direction:column;
+            gap:15px;
+            background:rgba(0,0,0,0.8);
+            position:absolute;
+            top:60px;
+            right:20px;
+            padding:15px;
+            border-radius:8px;
+        }
+        .nav-links.active{display:flex;}
+        .menu-toggle{display:block;}
     }
 </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', function(){
+            navLinks.classList.toggle('active');
+        });
+    });
+</script>
 </head>
 <body>
 
@@ -154,6 +169,7 @@
                 <i class="fas fa-gamepad logo-icon"></i>
                 <span>PSVITA HOMEBREW</span>
             </a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
             <div class="nav-links">
                 <a href="index.html">首页</a>
                 <a href="work.html">作品提交</a>
@@ -277,41 +293,10 @@
             <div class="footer-column">
                 <h4 class="footer-title">@PSVita破解吧</h4>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">PSVITA自制社区永不会死亡！！</p>
-                <div style="display: flex; gap: 15px;">
-                    <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-weibo"></i></a>
-                    <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-qq"></i></a>
-                    <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
-                    <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-bilibili"></i></a>
-                </div>
             </div>
-            <div class="footer-column">
-                <h4 class="footer-title">快速链接</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
-                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> 关于我们</a></li>
-                    <li><a href="work.html"><i class="fas fa-upload"></i> 提交作品</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4 class="footer-title">联系我们</h4>
-                <ul class="footer-links">
-                    <li><i class="fas fa-envelope"></i> contact：ATSPwang</li>
-                    <li><i class="fab fa-qq"></i> QQ群: 450789696</li>
-                    <li><i class="fab fa-bilibili"></i> B站: @Zarathusitra @核心玩家大川</li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            修改背景：深蓝紫 → 渐变蓝 + 玻璃磨砂效果<br>
-            主要文字：暖白（#f4f6fa），更护眼<br>
-            链接：水蓝 / 青绿色渐变，活泼不刺眼<br>
-            分块背景：半透明浅色玻璃效果<br>
-            阴影：轻盈漂浮感<br>
-            &copy; 本比赛禁止直接分享游戏数据  | 请使用个人正版游戏资源整合
         </div>
     </div>
 </footer>
-
 </body>
 </html>
 
