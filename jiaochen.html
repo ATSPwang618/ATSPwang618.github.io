@@ -48,11 +48,11 @@
         .container{width:90%;max-width:1200px;margin:0 auto;padding:0 20px;}
 
         section.block {
-        background-color: #f9f9f9; /* 背景色 */
+        background-color: rgba(0, 0, 0, 0.05); /* 淡黑色，透明度 5% */
         border-radius: 8px;       /* 圆角 */
         padding: 15px;            /* 内边距 */
         margin-bottom: 30px;      /* 块与块之间的距离 */
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 阴影，可选 */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* 阴影 */
     }
 
     section.block li {
@@ -62,9 +62,17 @@
     section.block h2 {
         margin-top: 0; /* 去掉顶部多余空白 */
         margin-bottom: 10px; 
+        color: #fff; /* 标题文字改为白色以增强对比 */
     }
 
+    section.block a {
+        color: #00aaff; /* 链接颜色 Vita 风格蓝 */
+        text-decoration: none;
+    }
 
+    section.block a:hover {
+        text-decoration: underline;
+    }
 
 
 
@@ -183,15 +191,13 @@
 
 <div class="container">
     <div class="guide-section">
-        <h2><i class="fas fa-laptop-code"></i> 开发环境搭建</h2>
         <ul>
             <li><a href="https://vitasdk.org/" target="_blank">VitaSDK</a> — Vita 自制软件的首选解决方案。大多数社区应用、游戏和移植版都是使用此工具链开发的。易于设置和使用，但需要 C/C++ 知识</li>
             <li><a href="https://github.com/Vita-Development-Suite/doc" target="_blank">Vita-Development-Suite</a> — 索尼官方 Playstation Vita SDK 的扩展和增强版本。虽然它的使用存在法律上的灰色地带，但在某些开源 SDK 功能不足的情况下，它可能是不可替代的。</li>
             <h2><i class="fas fa-laptop-code"></i> </h2>
             
             
-            
-            
+              
             <section class="block">         
             <li>-----------图形库---------------------</li>
             <li><a href="https://github.com/Rinnegatamante/vitaGL">vitagl</a> — 是从 OpenGL 到原生 PS Vita (sceGxm) 图形 API 的转换层。支持大多数需要 OpenGL 的自制游戏和移植版本。</li>
@@ -202,7 +208,7 @@
             <li><a href="https://github.com/vitasdk/packages">更多民间开源库</a></li>
             </section>
 
-            
+            <section class="block">
             <li>-----------语言支持-----------</li>
             <li><a href="https://github.com/SonicMastr/Python-Player-Vita/releases">python</a> </li>
             <li><a href="https://vitasdk.org/" target="_blank">lpp-vita</a> — PlayStation Vita 制作的 一款lua 解释器，性能较差</li>
@@ -210,27 +216,15 @@
             <li><a href="https://github.com/GrapheneCt/VitaMonoLoader">C#/Mono</a> </li>
             <li><a href="https://github.com/isage/pppp-vita/releases">PHP</a> </li>
             <li><a href="https://silica.codes/SilicaAndPina/ruby-vita">ruby</a> </li>
-            <h2><i class="fas fa-laptop-code"></i> </h2>
-            <h2><i class="fas fa-laptop-code"></i> </h2>
+            </section>
+
+
+            <section class="block">
             <li>-----------完整开发指南----------</li>
             <li><a href="https://www.bilibili.com/read/cv34382848/" target="_blank">PSV自制游戏开发指南-1</a> — 简体中文版版本</li>
             <li><a href="https://www.bilibili.com/read/cv34363832" target="_blank">PSV自制游戏开发指南-2</a> — 简体中文版版本</li>
             <li><a href="https://gl33ntwine.com/posts/develop-for-vita/" target="_blank">PSV自制游戏开发指南</a> — 英文完整版本</li>
-
-
-            
-            
-            
-
-            
-         
-            
-            
-
-
-
-
-            
+            </section>
         </ul>
     </div>
 
