@@ -46,10 +46,29 @@
             opacity:0.15;
         }
         .container{width:90%;max-width:1200px;margin:0 auto;padding:0 20px;}
-        h2 {
-        margin-top: 40px; /* 顶部空白 40 像素 */
-        margin-bottom: 10px; /* 底部空白 */
+
+        section.block {
+        background-color: #f9f9f9; /* 背景色 */
+        border-radius: 8px;       /* 圆角 */
+        padding: 15px;            /* 内边距 */
+        margin-bottom: 30px;      /* 块与块之间的距离 */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 阴影，可选 */
     }
+
+    section.block li {
+        margin: 6px 0; /* 每行列表的间距 */
+    }
+
+    section.block h2 {
+        margin-top: 0; /* 去掉顶部多余空白 */
+        margin-bottom: 10px; 
+    }
+
+
+
+
+
+        
         header{
             background:rgba(15, 12, 41, 0.85);
             backdrop-filter:blur(10px);
@@ -169,6 +188,11 @@
             <li><a href="https://vitasdk.org/" target="_blank">VitaSDK</a> — Vita 自制软件的首选解决方案。大多数社区应用、游戏和移植版都是使用此工具链开发的。易于设置和使用，但需要 C/C++ 知识</li>
             <li><a href="https://github.com/Vita-Development-Suite/doc" target="_blank">Vita-Development-Suite</a> — 索尼官方 Playstation Vita SDK 的扩展和增强版本。虽然它的使用存在法律上的灰色地带，但在某些开源 SDK 功能不足的情况下，它可能是不可替代的。</li>
             <h2><i class="fas fa-laptop-code"></i> </h2>
+            
+            
+            
+            
+            <section class="block">         
             <li>-----------图形库---------------------</li>
             <li><a href="https://github.com/Rinnegatamante/vitaGL">vitagl</a> — 是从 OpenGL 到原生 PS Vita (sceGxm) 图形 API 的转换层。支持大多数需要 OpenGL 的自制游戏和移植版本。</li>
             <li><a href="https://github.com/GrapheneCt/PVR_PSP2/releases">PVR_PSP2</a> — 驱动层 OpenGL 支持 PS Vita。使用尚属法律灰色地带。作为 VitaGL 的替代方案，在某些情况下可能与标准有更好的兼容性。</li>
@@ -176,8 +200,9 @@
             <li><a href="https://github.com/libsdl-org/SDL/blob/main/docs/README-vita.md">SDL1 / SDL2</a> — （默认随 Vita SDK 安装提供）</li>
             <li><a href="https://github.com/Northfear/SDL">SDL2（Northfear fork）</a> （如果您想从 SDL 管理 VitaGL GL 上下文，请使用）</li>
             <li><a href="https://github.com/vitasdk/packages">更多民间开源库</a></li>
-            <h2><i class="fas fa-laptop-code"></i> </h2>
-            <h2><i class="fas fa-laptop-code"></i> </h2>
+            </section>
+
+            
             <li>-----------语言支持-----------</li>
             <li><a href="https://github.com/SonicMastr/Python-Player-Vita/releases">python</a> </li>
             <li><a href="https://vitasdk.org/" target="_blank">lpp-vita</a> — PlayStation Vita 制作的 一款lua 解释器，性能较差</li>
