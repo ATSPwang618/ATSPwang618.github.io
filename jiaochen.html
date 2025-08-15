@@ -1,294 +1,661 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>开发指南 | PS Vita自制游戏大赛</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    :root {
-        --primary: #6a11cb;
-        --secondary: #2575fc;
-        --accent: #00f2fe;
-        --dark: #0f0c29;
-        --darker: #080616;
-        --light: #f8f9fa;
-        --gray: #6c757d;
-        --success: #00c9a7;
-        --warning: #ffd166;
-        --danger: #ff6b6b;
-        --modal-bg: rgba(8, 6, 22, 0.95);
-    }
-    body {
-        font-family: 'Roboto', sans-serif;
-        background: url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/bg-1.jpg') no-repeat center center fixed;
-        background-size: cover;
-        color: var(--light);
-        min-height: 100vh;
-        line-height: 1.6;
-        overflow-x: hidden;
-        position: relative;
-    }
-    body::before{
-        content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-        backdrop-filter:blur(6px);
-        z-index:-1;
-    }
-    .container{width:90%;max-width:1200px;margin:0 auto;padding:0 20px;}
-    header{
-        background:rgba(255,255,255,0.08);
-        backdrop-filter:blur(12px);
-        padding:15px 0;
-        position:sticky;
-        top:0;
-        z-index:1000;
-        border-bottom:1px solid rgba(255,255,255,0.15);
-    }
-    .navbar{display:flex;justify-content:space-between;align-items:center;}
-    .logo{display:flex;align-items:center;gap:12px;font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.8rem;color:var(--light);text-decoration:none;}
-    .logo-icon{color:var(--accent);font-size:2.2rem;}
-    .nav-links{display:flex;gap:30px;}
-    .nav-links a{
-        color:var(--light);text-decoration:none;font-weight:500;font-size:1.1rem;
-        position:relative;transition:all 0.3s ease;
-    }
-    .nav-links a:hover{color:var(--accent);}
-    .nav-links a::after{
-        content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s ease;
-    }
-    .nav-links a:hover::after{width:100%;}
-    .menu-toggle{
-        display:none;
-        font-size:1.8rem;
-        cursor:pointer;
-        color:var(--light);
-    }
-    .hero{
-        padding:60px 0 30px;
-        text-align:center;
-    }
-    .hero h1{
-        font-family:'Orbitron',sans-serif;
-        font-size:3rem;
-        margin-bottom:15px;
-        background:linear-gradient(90deg,var(--accent),var(--secondary));
-        -webkit-background-clip:text;
-        -webkit-text-fill-color:transparent;
-    }
-    .hero p{
-        font-size:1.1rem;
-        max-width:700px;
-        margin:0 auto 30px;
-        color:rgba(255,255,255,0.85);
-    }
-    .guide-section{
-        background:rgba(255,255,255,0.05);
-        border-radius:15px;
-        padding:20px;
-        margin-bottom:25px;
-        border:1px solid rgba(255,255,255,0.15);
-        backdrop-filter:blur(10px);
-    }
-    .guide-section h2{
-        font-family:'Orbitron',sans-serif;
-        font-size:1.5rem;
-        margin-bottom:10px;
-        color:var(--accent);
-    }
-    .guide-section ul{
-        list-style:none;
-        padding-left:0;
-        word-break:break-word;
-    }
-    section.block {
-        background-color: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        padding: 10px;
-        margin-bottom: 20px;
-        backdrop-filter:blur(8px);
-    }
-    footer{
-        background:rgba(0,0,0,0.3);
-        backdrop-filter:blur(10px);
-        padding:30px 0;
-        border-top:1px solid rgba(255,255,255,0.15);
-        margin-top:40px;
-    }
-    .footer-content{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;}
-    .footer-column{flex:1;min-width:200px;}
-    .footer-title{font-family:'Orbitron',sans-serif;font-size:1.2rem;margin-bottom:10px;color:var(--accent);}
-    .footer-links{list-style:none;}
-    .footer-links li{margin-bottom:8px;}
-    .footer-links a{color:rgba(255,255,255,0.7);text-decoration:none;display:flex;align-items:center;gap:8px;}
-    .footer-links a:hover{color:var(--accent);}
-    .copyright{
-        text-align:center;
-        padding-top:20px;
-        margin-top:20px;
-        border-top:1px solid rgba(255,255,255,0.15);
-        color:rgba(255,255,255,0.6);
-        font-size:0.85rem;
-    }
-    /* 手机端优化 */
-    @media (max-width:768px){
-        .hero h1{font-size:2.2rem;}
-        .hero p{font-size:1rem;}
-        .nav-links{
-            display:none;
-            flex-direction:column;
-            gap:15px;
-            background:rgba(0,0,0,0.8);
-            position:absolute;
-            top:60px;
-            right:20px;
-            padding:15px;
-            border-radius:8px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发指南 | PS Vita自制游戏大赛</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .nav-links.active{display:flex;}
-        .menu-toggle{display:block;}
-    }
-</style>
-<script>
-    document.addEventListener('DOMContentLoaded', function(){
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        menuToggle.addEventListener('click', function(){
-            navLinks.classList.toggle('active');
-        });
-    });
-</script>
+
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #00f2fe;
+            --dark: #0f0c29;
+            --darker: #080616;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #00c9a7;
+            --warning: #ffd166;
+            --danger: #ff6b6b;
+            --modal-bg: rgba(8, 6, 22, 0.95);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://raw.githubusercontent.com/ATSPwang618/ATSPwang618.github.io/refs/heads/main/web-bg/bg-1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 12, 41, 0.5);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" opacity="0.08"><path d="M150,100 C100,150 50,200 100,300 C150,350 250,350 300,300 C350,250 400,250 450,250 C500,250 550,250 600,250 C650,250 700,200 700,150 C700,100 650,50 600,50 C550,50 500,100 450,100 C400,100 350,50 300,50 C250,50 200,100 150,100 Z" fill="white"/><rect x="300" y="150" width="100" height="50" rx="10" fill="white"/><rect x="325" y="200" width="50" height="50" rx="10" fill="white"/><circle cx="250" cy="150" r="20" fill="white"/><circle cx="550" cy="150" r="20" fill="white"/></svg>') no-repeat center center;
+            background-size: 80% auto;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(15, 12, 41, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(106, 17, 203, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--light);
+        }
+
+        .hero {
+            padding: 80px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(106, 17, 203, 0.15), transparent 70%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(37, 117, 252, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .guide-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 30px 0 80px;
+        }
+
+        .guide-section {
+            background: rgba(15, 12, 41, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(106, 17, 203, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .guide-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 117, 252, 0.2);
+            border-color: rgba(37, 117, 252, 0.6);
+        }
+
+        .guide-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .guide-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .guide-section li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .guide-section li:last-child {
+            border-bottom: none;
+        }
+
+        .guide-section li:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding-left: 10px;
+        }
+
+        .guide-section a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .guide-section a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .guide-section a:hover {
+            color: white;
+        }
+
+        .guide-section a:hover::after {
+            width: 100%;
+        }
+
+        .guide-section .section-icon {
+            font-size: 1.4rem;
+            margin-right: 10px;
+        }
+
+        .category-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin: 20px 0 15px;
+            padding: 8px 0;
+            border-bottom: 2px solid rgba(106, 17, 203, 0.5);
+        }
+
+        .footer {
+            background: rgba(8, 6, 22, 0.9);
+            padding: 40px 0;
+            border-top: 1px solid rgba(106, 17, 203, 0.3);
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(106, 17, 203, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                background: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+            
+            .guide-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .guide-section h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-gamepad logo-icon"></i>
+                    <span>PSVITA HOMEBREW</span>
+                </a>
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+                <div class="nav-links">
+                    <a href="index.html">首页</a>
+                    <a href="work.html">作品提交</a>
+                    <a href="manual.html">比赛说明</a>
+                    <a href="jiaochen.html" class="active">开发教程</a> 
+                    <a href="aboutus.html">关于我们</a> 
+                </div>
+            </nav>
+        </div>
+    </header>
 
-<header>
+    <section class="hero">
+        <div class="container">
+            <h1>PS Vita 自制游戏开发指南</h1>
+            <p>这些希望大家能用的上！</p>
+        </div>
+    </section>
+
     <div class="container">
-        <nav class="navbar">
-            <a href="index.html" class="logo">
-                <i class="fas fa-gamepad logo-icon"></i>
-                <span>PSVITA HOMEBREW</span>
-            </a>
-            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-            <div class="nav-links">
-                <a href="index.html">首页</a>
-                <a href="work.html">作品提交</a>
-                <a href="manual.html">比赛说明</a>
-                <a href="jiaochen.html">开发教程</a> 
-                <a href="aboutus.html">关于我们</a> 
+        <div class="guide-container">
+            <div class="guide-section">
+                <h2><i class="fas fa-laptop-code section-icon"></i>开发环境搭建</h2>
+                <ul>
+                    <li>
+                        <a href="https://vitasdk.org/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> VitaSDK
+                        </a> — Vita 自制软件的首选解决方案。大多数社区应用、游戏和移植版都是使用此工具链开发的。易于设置和使用，但需要 C/C++ 知识
+                    </li>
+                    <li>
+                        <a href="https://github.com/Vita-Development-Suite/doc" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Vita-Development-Suite
+                        </a> — 索尼官方 Playstation Vita SDK 的扩展和增强版本。虽然它的使用存在法律上的灰色地带，但在某些开源 SDK 功能不足的情况下，它可能是不可替代的。
+                    </li>
+                    
+                    <li class="category-title">图形库</li>
+                    <li>
+                        <a href="https://github.com/Rinnegatamante/vitaGL" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> vitaGL
+                        </a> — 是从 OpenGL 到原生 PS Vita (sceGxm) 图形 API 的转换层。支持大多数需要 OpenGL 的自制游戏和移植版本。
+                    </li>
+                    <li>
+                        <a href="https://github.com/GrapheneCt/PVR_PSP2/releases" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> PVR_PSP2
+                        </a> — 驱动层 OpenGL 支持 PS Vita。使用尚属法律灰色地带。作为 VitaGL 的替代方案，在某些情况下可能与标准有更好的兼容性。
+                    </li>
+                    <li>
+                        <a href="https://github.com/xerpi/libvita2d" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> libvita2d
+                        </a> — 适用于 PS Vita 的简单 GPU 加速 2D 库（默认随 Vita SDK 安装提供）
+                    </li>
+                    <li>
+                        <a href="https://github.com/libsdl-org/SDL/blob/main/docs/README-vita.md" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> SDL1 / SDL2
+                        </a> — （默认随 Vita SDK 安装提供）
+                    </li>
+                    <li>
+                        <a href="https://github.com/Northfear/SDL" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> SDL2（Northfear fork）
+                        </a> （如果您想从 SDL 管理 VitaGL GL 上下文，请使用）
+                    </li>
+                    <li>
+                        <a href="https://github.com/vitasdk/packages" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 更多民间开源库
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+
+            <div class="guide-section">
+                <h2><i class="fas fa-tools section-icon"></i> 常见游戏引擎</h2>
+                <ul>
+                    <li class="category-title">移植安卓游戏</li>
+                    <li>
+                        <a href="https://github.com/Rocroverss/vitasoguide" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Android so加载器介绍指南（不完全）
+                        </a> -编写安卓so加载器移植安卓游戏到PSVita！
+                    </li>
+                    <li>
+                        <a href="https://www.bilibili.com/video/BV1Wyh8zXEvA" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Android so加载器视频教学
+                        </a> -编写安卓so加载器移植安卓游戏到PSVita！
+                    </li>
+                    <li>
+                        <a href="https://github.com/v-atamanenko/soloader-boilerplate/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> soloader加载器模版
+                        </a> -一个用于促进 Android 到 Vita 移植开发的样板项目。它负责项目结构和许多常见问题。
+                    </li>
+                    
+                    <li class="category-title">一些开源游戏引擎</li>
+                    <li>
+                        <a href="https://www.patreon.com/posts/guide-how-to-to-24906451" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> unity
+                        </a> -如何使用unity开发psvita游戏！
+                    </li>
+                    <li>
+                        <a href="https://github.com/SonicMastr/godot-vita/releases" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Godot引擎
+                        </a> - (最高支持到ver3.5.rc5)
+                    </li>
+                    <li>
+                        <a href="https://www.bilibili.com/video/BV1fvRNYdEGv" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> mugen
+                        </a> -如何简单套壳mugen开发psvita上的格斗游戏！
+                    </li>
+                    <li>
+                        <a href="https://github.com/KuromeSan/GayMaker" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> gamemaker stuido
+                        </a> -GameMaker Studio PSVita 导出工具
+                    </li>
+                    <li>
+                        <a href="https://github.com/KuromeSan/GayMaker" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> YoYoloder加载器
+                        </a> -Loader/Wrapper for Android's YoYo Runner for PSVita.
+                    </li>
+                    <li>
+                        <a href="https://docs.scummvm.org/en/v2.7.0/other_platforms/playstation_vita.html" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> ScummVM
+                        </a> -PS Vita版本
+                    </li>
+                    <li>
+                        <a href="https://github.com/EasyRPG/Player" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> RPG Maker 2000 / 2003 / EasyRPG
+                        </a> -PS Vita版本
+                    </li>
+                    <li>
+                        <a href="https://github.com/rsn8887/openbor" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> OpenBOR
+                        </a> -PS Vita版本的2D 横向卷轴引擎
+                    </li>
+                    <li>
+                        <a href="https://github.com/Rinnegatamante/vitaQuakeIII" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 各种 idTech 引擎
+                        </a> - Wolfenstein 3D engine, id Tech 1, id Tech 2, id Tech 3, even a PoC of id Tech 4.
+                    </li>
+                    <li>
+                        <a href="https://github.com/fgsfdsfgs/vitaXash3D" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Xash3D
+                        </a> - GoldSrc
+                    </li>
+                    <li>
+                        <a href="https://github.com/Fewnity/Xenity-Engine" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Xenity-Engine
+                        </a> - 新出的开源3d游戏引擎
+                    </li>
+                    <li>还有很多，就不一一列举了！</li>
+                </ul>
+            </div>
+
+            <div class="guide-section">
+                <h2><i class="fas fa-code section-icon"></i> 语言支持</h2>
+                <ul>
+                    <li>
+                        <a href="https://github.com/SonicMastr/Python-Player-Vita/releases" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Python
+                        </a> 
+                    </li>
+                    <li>
+                        <a href="https://vitasdk.org/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> lpp-vita
+                        </a> — PlayStation Vita 制作的 一款lua 解释器，性能较差
+                    </li>
+                    <li>
+                        <a href="https://vitasdk.org/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> LIFELUA
+                        </a> — PSVita 的 另外一款Lua 解释器,性能更好
+                    </li>
+                    <li>
+                        <a href="https://github.com/GrapheneCt/VitaMonoLoader" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> C#/Mono
+                        </a> 
+                    </li>
+                    <li>
+                        <a href="https://github.com/isage/pppp-vita/releases" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> PHP
+                        </a> 
+                    </li>
+                    <li>
+                        <a href="https://silica.codes/SilicaAndPina/ruby-vita" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Ruby
+                        </a> 
+                    </li>
+                    
+                    <li class="category-title">完整开发指南</li>
+                    <li>
+                        <a href="https://www.bilibili.com/read/cv34382848/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> PSV自制游戏开发指南-1
+                        </a> — 简体中文版版本
+                    </li>
+                    <li>
+                        <a href="https://www.bilibili.com/read/cv34363832" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> PSV自制游戏开发指南-2
+                        </a> — 简体中文版版本
+                    </li>
+                    <li>
+                        <a href="https://gl33ntwine.com/posts/develop-for-vita/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> PSV自制游戏开发指南
+                        </a> — 英文完整版本
+                    </li>
+                </ul>
+            </div>
+
+            <div class="guide-section">
+                <h2><i class="fas fa-bug section-icon"></i> 开发工具</h2>
+                <ul>
+                    <li>
+                        <a href="https://github.com/devnoname120/vitacompanion" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Vitacompanion
+                        </a> -后台 FTP 服务器 + 在您的 Vita 上执行远程命令。
+                    </li>
+                    <li>
+                        <a href="https://github.com/isage/catlog" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> catlog
+                        </a> -查看 PC 上 Vita 的 stdout（日志输出）。
+                    </li>
+                    <li>
+                        <a href="https://github.com/DaveeFTW/kvdb" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> kvdb
+                        </a> -适用于 PS Vita 的 GDB 兼容调试器。有缺陷。
+                    </li>
+                    <li>
+                        <a href="https://github.com/devnoname120/vitacompanion" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> PSVshell
+                        </a> -强烈推荐的PSV帧数显示插件，可以超频
+                    </li>
+                    <li>
+                        <a href="https://github.com/TheOfficialFloW/VitaShell/releases" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> VitaShell
+                        </a> -PSV实机本地文件管理器
+                    </li>
+                    <li>
+                        <a href="https://github.com/xyzz/vita-parse-core" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> vita-parse-core
+                        </a> -核心转储阅读器用于调试崩溃。
+                    </li>
+                    <li>
+                        <a href="https://github.com/TeamFAPS/PSVita-RE-tools" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> PrincessLog
+                        </a> -适用于任何自制软件、用户插件、内核插件的完整日志解决方案。
+                    </li>
+                    <li>
+                        <a href="https://github.com/TeamFAPS/PSVita-RE-tools" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> PSVita-RE-tools
+                        </a> -PS Vita逆向工程工具大合集
+                    </li>
+                    <li>
+                        <a href="https://www.psdevwiki.com/vita/index.php?title=Main_Page" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Vita Development Wiki
+                        </a> -另一个面向开发者的维基百科
+                    </li>
+                    <li>
+                        <a href="https://gist.github.com/Hammerill/64411eebf071b93396b7d310ba8d6776" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> LiveArea 规格
+                        </a> -PS Vita自制程序LiveArea 图像要求
+                    </li>
+                    
+                    <li class="category-title">相关工具</li>
+                    <li>
+                        <a href="https://forum.hackinformer.com/viewtopic.php?t=765" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> PSV自制游戏气泡指南
+                        </a> -How to create a custom Livearea screen for your Homebrew
+                    </li>     
+                    <li>
+                        <a href="https://github.com/Ibrahim778/PSP2Tools/" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 简化PlayStation Vita开发的Unity软件包
+                        </a> -支持一键构建和安装您的项目。
+                    </li>
+                    <li>
+                        <a href="https://share.weiyun.com/FuMLORYm" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> xdelt
+                        </a> -差异化补丁程序，避免版权纠纷
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-</header>
 
-<section class="hero">
-    <div class="container">
-        <h1>PS Vita 自制游戏开发指南</h1>
-        <p>这些希望大家能用的上！</p>
-    </div>
-</section>
-
-
-<div class="container">
-    <div class="guide-section">
-        <ul>
-
-            <h2><i class="fas fa-laptop-code">开发环境搭建</i> </h2>
-            <li><a href="https://vitasdk.org/" target="_blank">VitaSDK</a> — Vita 自制软件的首选解决方案。大多数社区应用、游戏和移植版都是使用此工具链开发的。易于设置和使用，但需要 C/C++ 知识</li>
-            <li><a href="https://github.com/Vita-Development-Suite/doc" target="_blank">Vita-Development-Suite</a> — 索尼官方 Playstation Vita SDK 的扩展和增强版本。虽然它的使用存在法律上的灰色地带，但在某些开源 SDK 功能不足的情况下，它可能是不可替代的。</li>
-    
-            <section class="block">         
-            <li>-----------图形库---------------------</li>
-            <li><a href="https://github.com/Rinnegatamante/vitaGL">vitagl</a> — 是从 OpenGL 到原生 PS Vita (sceGxm) 图形 API 的转换层。支持大多数需要 OpenGL 的自制游戏和移植版本。</li>
-            <li><a href="https://github.com/GrapheneCt/PVR_PSP2/releases">PVR_PSP2</a> — 驱动层 OpenGL 支持 PS Vita。使用尚属法律灰色地带。作为 VitaGL 的替代方案，在某些情况下可能与标准有更好的兼容性。</li>
-            <li><a href="https://github.com/xerpi/libvita2d">libvita2d</a> — 适用于 PS Vita 的简单 GPU 加速 2D 库（默认随 Vita SDK 安装提供）</li>
-            <li><a href="https://github.com/libsdl-org/SDL/blob/main/docs/README-vita.md">SDL1 / SDL2</a> — （默认随 Vita SDK 安装提供）</li>
-            <li><a href="https://github.com/Northfear/SDL">SDL2（Northfear fork）</a> （如果您想从 SDL 管理 VitaGL GL 上下文，请使用）</li>
-            <li><a href="https://github.com/vitasdk/packages">更多民间开源库</a></li>
-            </section>
-
-            <section class="block">
-            <li>-----------语言支持-----------</li>
-            <li><a href="https://github.com/SonicMastr/Python-Player-Vita/releases">python</a> </li>
-            <li><a href="https://vitasdk.org/" target="_blank">lpp-vita</a> — PlayStation Vita 制作的 一款lua 解释器，性能较差</li>
-            <li><a href="https://vitasdk.org/" target="_blank">LIFELUA</a> — PSVita 的 另外一款Lua 解释器,性能更好</li>
-            <li><a href="https://github.com/GrapheneCt/VitaMonoLoader">C#/Mono</a> </li>
-            <li><a href="https://github.com/isage/pppp-vita/releases">PHP</a> </li>
-            <li><a href="https://silica.codes/SilicaAndPina/ruby-vita">ruby</a> </li>
-            </section>
-
-
-            <section class="block">
-            <li>-----------完整开发指南----------</li>
-            <li><a href="https://www.bilibili.com/read/cv34382848/" target="_blank">PSV自制游戏开发指南-1</a> — 简体中文版版本</li>
-            <li><a href="https://www.bilibili.com/read/cv34363832" target="_blank">PSV自制游戏开发指南-2</a> — 简体中文版版本</li>
-            <li><a href="https://gl33ntwine.com/posts/develop-for-vita/" target="_blank">PSV自制游戏开发指南</a> — 英文完整版本</li>
-            </section>
-        </ul>
-    </div>
-
-    <div class="guide-section">
-        <h2><i class="fas fa-tools"></i> 常见游戏引擎</h2>
-        <ul>
-            <section class="block">    
-            <li>--------移植安卓游戏--------------</li>
-            <li><a href="https://github.com/Rocroverss/vitasoguide" target="_blank">Android so加载器介绍指南（不完全） </a> -编写安卓so加载器移植安卓游戏到PSVita！</li>
-            <li><a href="https://www.bilibili.com/video/BV1Wyh8zXEvA" target="_blank">Android so加载器视频教学 </a> -编写安卓so加载器移植安卓游戏到PSVita！</li>
-            <li><a href="https://github.com/v-atamanenko/soloader-boilerplate/">soloader加载器模版 </a> -一个用于促进 Android 到 Vita 移植开发的样板项目。它负责项目结构和许多常见问题。</li>
-            </section>
-            
-            <section class="block">    
-            <li>--------一些开源游戏引擎--------------</li>
-            <li><a href="https://www.patreon.com/posts/guide-how-to-to-24906451" target="_blank">unity </a> -如何使用unity开发psvita游戏！</li>
-            <li><a href="https://github.com/SonicMastr/godot-vita/releases" target="_blank">Godot引擎</a> - (最高支持到ver3.5.rc5)</li>
-            <li><a href="https://www.bilibili.com/video/BV1fvRNYdEGv" target="_blank">mugen </a> -如何简单套壳mugen开发psvita上的格斗游戏！</li>
-            <li><a href="https://github.com/KuromeSan/GayMaker" target="_blank"> gamemaker stuido</a> -GameMaker Studio PSVita 导出工具</li>
-            <li><a href="https://github.com/KuromeSan/GayMaker" target="_blank"> YoYoloder加载器</a> -Loader/Wrapper for Android's YoYo Runner for PSVita.</li>
-            <li><a href="https://docs.scummvm.org/en/v2.7.0/other_platforms/playstation_vita.html" target="_blank"> ScummVM</a> -PS Vita版本</li>
-            <li><a href="https://github.com/EasyRPG/Player" target="_blank"> RPG Maker 2000 / 2003 / EasyRPG</a> -PS Vita版本</li>
-            <li><a href="https://github.com/rsn8887/openbor" target="_blank"> OpenBOR</a> -PS Vita版本的2D 横向卷轴引擎</li>
-            <li><a href="https://github.com/Rinnegatamante/vitaQuakeIII" target="_blank"> 各种 idTech 引擎</a> - Wolfenstein 3D engine, id Tech 1, id Tech 2, id Tech 3, even a PoC of id Tech 4.</li>
-            <li><a href="https://github.com/fgsfdsfgs/vitaXash3D" target="_blank"> Xash3D</a> - GoldSrc</li>
-            <li><a href="https://github.com/Fewnity/Xenity-Engine" target="_blank"> Xenity-Engine</a> - 新出的开源3d游戏引擎</li>
-            <li>还有很多，就不一一列举了！</li>
-            </section>
-
-            <section class="block">    
-            <li>--------galgame常见游戏引擎--------------</li>
-            <li><a href="https://github.com/Strrationalism/CPyMO" target="_blank"> cpymo</a> -一个跨平台的galgame开源游戏引擎</li>
-            <li><a href="https://github.com/SonicMastr/renpy-vita" target="_blank">renpy-vita</a> - 老版本，最高支持到7</li>
-            <li><a href="https://github.com/Grimiku/RenPy-Vita-8" target="_blank">renpy8-vita</a> - 最新版本，支持到renpy8</li>
-            <li><a href="https://github.com/ATSPwang618/artemis-engine-port-tools" target="_blank">artemis engine</a> - 相关备份</li>
-            </section>
-            
-            <section class="block"> 
-            <li>----------相关的工具------------</li>
-            <li><a href="https://forum.hackinformer.com/viewtopic.php?t=765" target="_blank">PSV自制游戏气泡指南 </a> -How to create a custom Livearea screen for your Homebrew</li>     
-            <li><a href="https://github.com/Ibrahim778/PSP2Tools/" target="_blank">简化PlayStation Vita开发的Unity软件包 </a> -支持一键构建和安装您的项目。</li>
-            <li><a href="https://share.weiyun.com/FuMLORYm" target="_blank">xdelt </a> -差异化补丁程序，避免版权纠纷</li>
-            </section>
-        </ul>
-    </div>
-
-    <div class="guide-section">
-        <h2><i class="fas fa-bug"></i> 让你的开发更轻松的工具</h2>
-        <ul>
-            <li><a href="https://github.com/devnoname120/vitacompanion" target="_blank">Vitacompanion </a> -后台 FTP 服务器 + 在您的 Vita 上执行远程命令。</li>
-            <li><a href="https://github.com/isage/catlog" target="_blank">catlog </a> -查看 PC 上 Vita 的 stdout（日志输出）。</li>
-            <li><a href="https://github.com/DaveeFTW/kvdb" target="_blank">kvdb </a> -适用于 PS Vita 的 GDB 兼容调试器。有缺陷。</li>
-            <li><a href="https://github.com/devnoname120/vitacompanion" target="_blank">PSVshell </a> -强烈推荐的PSV帧数显示插件，可以超频</li>
-            <li><a href="https://github.com/TheOfficialFloW/VitaShell/releases" target="_blank">VitaShell </a> -PSV实机本地文件管理器</li>
-            <li><a href="https://github.com/xyzz/vita-parse-core" target="_blank">vita-parse-core </a> -核心转储阅读器用于调试崩溃。</li>
-            <li><a href="https://github.com/TeamFAPS/PSVita-RE-tools" target="_blank">PrincessLog </a> -适用于任何自制软件、用户插件、内核插件的完整日志解决方案。</li>
-            <li><a href="https://github.com/TeamFAPS/PSVita-RE-tools" target="_blank">PSVita-RE-tools </a> -PS Vita逆向工程工具大合集</li>
-            <li><a href="https://www.psdevwiki.com/vita/index.php?title=Main_Page" target="_blank">Vita Development Wiki </a> -另一个面向开发者的维基百科</li>
-            <li><a href="https://gist.github.com/Hammerill/64411eebf071b93396b7d310ba8d6776" target="_blank">LiveArea 规格 </a> -PS Vita自制程序LiveArea 图像要求</li>
-        </ul>
-    </div>
-</div>
-
-<!-- 页脚 -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
@@ -305,8 +672,8 @@
                     <h4 class="footer-title">快速链接</h4>
                     <ul class="footer-links">
                         <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
-                        <li><a href="#"><i class="fas fa-info-circle"></i> 关于比赛</a></li>
-                        <li><a href="#"><i class="fas fa-upload"></i> 提交作品</a></li>
+                        <li><a href="manual.html"><i class="fas fa-info-circle"></i> 比赛说明</a></li>
+                        <li><a href="work.html"><i class="fas fa-upload"></i> 提交作品</a></li>
                     </ul>
                 </div>
                 
@@ -320,10 +687,30 @@
                 </div>
             </div>
             <div class="copyright">
-                &copy; 本比赛禁止分享游戏数据  | 请使用个人正版游戏资源整合
+                &copy; 本比赛禁止分享游戏数据 | 请使用个人正版游戏资源整合
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(){
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            // 添加当前页面高亮
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
