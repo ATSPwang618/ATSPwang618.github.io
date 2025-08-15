@@ -95,223 +95,26 @@
             margin:0 auto 40px;
             color:rgba(255,255,255,0.85);
         }
-        
-        /* 提交表单样式 */
-        .submission-container {
-            display: flex;
-            gap: 40px;
-            margin: 40px auto;
+        .about-container{
+            background:rgba(15, 12, 41, 0.7);
+            border-radius:15px;
+            padding:40px;
+            margin:40px auto;
+            border:1px solid rgba(106, 17, 203, 0.3);
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+            position:relative;
+            overflow:hidden;
         }
-        
-        .form-container {
-            flex: 1;
-            background: rgba(15, 12, 41, 0.7);
-            border-radius: 15px;
-            padding: 40px;
-            border: 1px solid rgba(106, 17, 203, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
+        .about-container::before{
+            content:'';
+            position:absolute;top:0;left:0;width:100%;height:100%;
+            background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.02"><rect x="0" y="0" width="100" height="100" fill="none" stroke="%236a11cb" stroke-width="2"/><circle cx="150" cy="50" r="30" fill="none" stroke="%232575fc" stroke-width="2"/><polygon points="100,150 50,180 70,120 30,80 80,80 100,20 120,80 170,80 130,120 150,180" fill="none" stroke="%2300f2fe" stroke-width="2"/></svg>');
+            z-index:-1;
         }
-        
-        .form-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.02"><rect x="0" y="0" width="100" height="100" fill="none" stroke="%236a11cb" stroke-width="2"/><circle cx="150" cy="50" r="30" fill="none" stroke="%232575fc" stroke-width="2"/><polygon points="100,150 50,180 70,120 30,80 80,80 100,20 120,80 170,80 130,120 150,180" fill="none" stroke="%2300f2fe" stroke-width="2"/></svg>');
-            z-index: -1;
-        }
-        
-        .form-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .form-header h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        
-        .form-header p {
-            color: var(--gray);
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: var(--accent);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(106, 17, 203, 0.3);
-            border-radius: 8px;
-            color: var(--light);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .checkbox-group input {
-            width: 18px;
-            height: 18px;
-        }
-        
-        .checkbox-group label {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-        }
-        
-        .btn-submit {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .btn-submit:hover {
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            box-shadow: 0 0 15px rgba(37, 117, 252, 0.5);
-            transform: translateY(-2px);
-        }
-        
-        /* 提交说明样式 */
-        .instructions-container {
-            flex: 1;
-            background: rgba(15, 12, 41, 0.7);
-            border-radius: 15px;
-            padding: 40px;
-            border: 1px solid rgba(106, 17, 203, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .instructions-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.02"><rect x="0" y="0" width="100" height="100" fill="none" stroke="%236a11cb" stroke-width="2"/><circle cx="150" cy="50" r="30" fill="none" stroke="%232575fc" stroke-width="2"/><polygon points="100,150 50,180 70,120 30,80 80,80 100,20 120,80 170,80 130,120 150,180" fill="none" stroke="%2300f2fe" stroke-width="2"/></svg>');
-            z-index: -1;
-        }
-        
-        .instructions-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .instructions-header h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        
-        .instruction-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding: 15px;
-            background: rgba(37, 117, 252, 0.1);
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-        
-        .instruction-item:hover {
-            transform: translateY(-3px);
-            background: rgba(37, 117, 252, 0.15);
-        }
-        
-        .instruction-icon {
-            min-width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
-        .instruction-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: var(--accent);
-        }
-        
-        .instruction-content p {
-            color: rgba(255,255,255,0.8);
-            line-height: 1.6;
-        }
-        
-        .important-note {
-            background: rgba(255, 107, 107, 0.1);
-            border-left: 4px solid var(--danger);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin-top: 30px;
-        }
-        
-        .important-note h3 {
-            color: var(--danger);
-            margin-bottom: 10px;
-        }
-        
-        .important-note ul {
-            padding-left: 20px;
-        }
-        
-        .important-note li {
-            margin-bottom: 10px;
-            color: rgba(255,255,255,0.8);
-        }
-        
-        /* 页脚 */
+        .about-header{text-align:center;margin-bottom:40px;}
+        .about-header h2{font-family:'Orbitron',sans-serif;font-size:2.5rem;color:var(--accent);margin-bottom:15px;}
+        .about-header p{color:var(--gray);max-width:800px;margin:0 auto;font-size:1.1rem;}
+        .about-content p{color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:20px;}
         footer{
             background:rgba(8, 6, 22, 0.9);
             padding:40px 0;
@@ -326,47 +129,7 @@
         .footer-links a{color:rgba(255,255,255,0.7);text-decoration:none;transition:color 0.3s ease;display:flex;align-items:center;gap:8px;}
         .footer-links a:hover{color:var(--accent);}
         .copyright{text-align:center;padding-top:30px;margin-top:30px;border-top:1px solid rgba(106, 17, 203, 0.2);color:rgba(255,255,255,0.5);font-size:0.9rem;}
-        
-        /* 响应式设计 */
-        @media (max-width: 992px) {
-            .submission-container {
-                flex-direction: column;
-            }
-            
-            .form-container, .instructions-container {
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .form-container, .instructions-container {
-                padding: 25px;
-            }
-            
-            .form-header h2, .instructions-header h2 {
-                font-size: 1.8rem;
-            }
-        }
+        @media(max-width:768px){.navbar{flex-direction:column;gap:20px;}}
     </style>
 </head>
 <body>
@@ -380,7 +143,7 @@
                 </a>
                 <div class="nav-links">
                     <a href="index.html">首页</a>
-                    <a href="work.html" class="active">作品提交</a>
+                    <a href="work.html">作品提交</a>
                     <a href="manual.html">比赛说明</a>
                     <a href="jiaochen.html">开发教程</a> 
                     <a href="aboutus.html">关于我们</a> 
@@ -393,148 +156,47 @@
     <section class="hero">
         <div class="container">
             <h1>作品提交</h1>
-            <p>将您的PSV自制游戏或工具提交给我们，参与2025年度大赛</p>
+            <p>提交您的自制游戏作品，参与PS Vita自制游戏大赛</p>
         </div>
     </section>
 
-    <!-- 主要内容区 -->
+    <!-- 内容 -->
     <div class="container">
-        <div class="submission-container">
-            <!-- 表单区域 -->
-            <div class="form-container">
-                <div class="form-header">
-                    <h2><i class="fas fa-upload"></i> 提交表单</h2>
-                    <p>请填写以下信息以提交您的作品</p>
-                </div>
-                
-                <form id="submissionForm">
-                    <div class="form-group">
-                        <label for="projectName">作品名称 *</label>
-                        <input type="text" id="projectName" class="form-control" placeholder="请输入您的作品名称" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="teamName">团队/开发者名称 *</label>
-                        <input type="text" id="teamName" class="form-control" placeholder="个人或团队名称" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contactEmail">联系邮箱 *</label>
-                        <input type="email" id="contactEmail" class="form-control" placeholder="您的有效邮箱地址" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="projectType">作品类型 *</label>
-                        <select id="projectType" class="form-control" required>
-                            <option value="">请选择作品类型</option>
-                            <option value="game">原创游戏</option>
-                            <option value="port">移植游戏</option>
-                            <option value="tool">实用工具</option>
-                            <option value="engine">游戏引擎</option>
-                            <option value="other">其他</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="projectDescription">作品简介 *</label>
-                        <textarea id="projectDescription" class="form-control" placeholder="请描述您的作品，包括特点、玩法、技术亮点等（至少200字）" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="projectFiles">上传作品文件 *</label>
-                        <input type="file" id="projectFiles" class="form-control" multiple required>
-                        <small style="color: var(--gray); display: block; margin-top: 8px;">支持格式: VPK, ZIP, RAR (最大200MB)</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="screenshots">上传截图</label>
-                        <input type="file" id="screenshots" class="form-control" accept="image/*" multiple>
-                        <small style="color: var(--gray); display: block; margin-top: 8px;">建议上传3-5张游戏截图 (JPG/PNG)</small>
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="agreeTerms" required>
-                        <label for="agreeTerms">我已阅读并同意<a href="#" style="color: var(--accent);">参赛协议</a>中的所有条款</label>
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="originalWork">
-                        <label for="originalWork">我确认该作品为原创或已获得所有必要的授权</label>
-                    </div>
-                    
-                    <button type="submit" class="btn-submit">
-                        <i class="fas fa-paper-plane"></i> 提交作品
-                    </button>
-                </form>
+        <div class="about-container">
+            <div class="about-header">
+                <h2><i class="fas fa-upload"></i> 如何提交作品</h2>
+                <p>请通过GitHub Issues提交您的作品，确保按照指定格式填写信息</p>
             </div>
-            
-            <!-- 说明区域 -->
-            <div class="instructions-container">
-                <div class="instructions-header">
-                    <h2><i class="fas fa-info-circle"></i> 提交说明</h2>
-                    <p>请仔细阅读以下提交要求和注意事项</p>
-                </div>
-                
-                <div class="instruction-item">
-                    <div class="instruction-icon">
-                        <i class="fas fa-file"></i>
-                    </div>
-                    <div class="instruction-content">
-                        <h3>文件要求</h3>
-                        <p>请确保您的作品文件完整且可运行。如果是游戏，请包含所有必要的资源文件。压缩包内请包含README文件说明安装方法。</p>
-                    </div>
-                </div>
-                
-                <div class="instruction-item">
-                    <div class="instruction-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="instruction-content">
-                        <h3>代码规范</h3>
-                        <p>如果是开源项目，请确保代码结构清晰并有适当注释。对于闭源项目，请确保没有恶意代码或侵犯版权的内容。</p>
-                    </div>
-                </div>
-                
-                <div class="instruction-item">
-                    <div class="instruction-icon">
-                        <i class="fas fa-copyright"></i>
-                    </div>
-                    <div class="instruction-content">
-                        <h3>版权声明</h3>
-                        <p>提交作品必须为原创或已获得所有必要授权。任何侵犯版权的作品将被取消参赛资格。</p>
-                    </div>
-                </div>
-                
-                <div class="instruction-item">
-                    <div class="instruction-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <div class="instruction-content">
-                        <h3>评审标准</h3>
-                        <p>作品将根据创意性、技术实现、用户体验和完成度进行评审。请确保您的作品在提交前经过充分测试。</p>
-                    </div>
-                </div>
-                
-                <div class="instruction-item">
-                    <div class="instruction-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <div class="instruction-content">
-                        <h3>截止日期</h3>
-                        <p>作品提交截止日期为2025年10月31日。最终获奖名单将于2025年12月公布。</p>
-                    </div>
-                </div>
-                
-                <div class="important-note">
-                    <h3><i class="fas fa-exclamation-triangle"></i> 重要注意事项</h3>
-                    <ul>
-                        <li>提交作品前请确保在PS Vita实机上测试通过</li>
-                        <li>不接受包含盗版内容或侵犯知识产权的作品</li>
-                        <li>作品提交后不可更改，请确认信息无误</li>
-                        <li>如需要撤回作品，请在提交后48小时内联系管理员</li>
-                        <li>评审期间可能需要开发者提供额外信息或演示</li>
-                    </ul>
-                </div>
+            <div class="about-content">
+                <p>本次大赛的作品提交通过GitHub仓库的Issues功能进行。请点击下方按钮跳转到提交页面，并在创建新Issue时按照指定的格式填写内容。我们会审核并确认您的提交。</p>
+                <p><strong>提交步骤：</strong></p>
+                <ol style="color:rgba(255,255,255,0.85); line-height:1.8; margin-bottom:20px; padding-left:20px;">
+                    <li>准备您的作品文件（VPK格式或其他相关文件），并上传到可靠的托管平台（如GitHub Releases、Google Drive等）。</li>
+                    <li>访问 <a href="https://github.com/ATSPwang618/ATSPwang618.github.io/issues" target="_blank" style="color:var(--accent);">https://github.com/ATSPwang618/ATSPwang618.github.io/issues</a>。</li>
+                    <li>点击“New issue”创建新Issue。</li>
+                    <li>按照以下格式填写Issue内容（使用Markdown格式）。</li>
+                    <li>提交后，等待组织团队审核和反馈。</li>
+                </ol>
+                <p><strong>指定提交格式（Issue标题和内容）：</strong></p>
+                <pre style="background:rgba(0,0,0,0.3); padding:15px; border-radius:8px; overflow:auto; color:var(--light);">
+**标题：** [作品名称] - 作者：[您的用户名或昵称]
+
+**内容：**
+
+- **作品名称：** [您的作品名称]
+- **作者：** [您的用户名/昵称]
+- **作品类型：** [原创/移植/其他]
+- **描述：** [简要描述作品内容、玩法和亮点，100-300字]
+- **下载链接：** [作品文件的下载链接，例如VPK文件]
+- **截图/视频：** [可选，提供作品截图或演示视频链接]
+- **联系方式：** [可选，您的QQ/邮箱等，便于后续沟通]
+- **其他说明：** [任何额外信息，如依赖的插件或注意事项]
+
+请确保作品符合比赛规则，不包含非法内容。
+                </pre>
+                <p style="text-align:center; margin-top:30px;">
+                    <a href="https://github.com/ATSPwang618/ATSPwang618.github.io/issues" target="_blank" style="background:linear-gradient(90deg,var(--primary),var(--secondary)); color:white; padding:15px 30px; border-radius:8px; text-decoration:none; font-weight:500; transition:all 0.3s ease;">立即提交作品</a>
+                </p>
             </div>
         </div>
     </div>
@@ -558,7 +220,7 @@
                     <ul class="footer-links">
                         <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
                         <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> 关于我们</a></li>
-                        <li><a href="work.html"><i class="fas fa-upload"></i> 提交作品</a></li>
+                        <li><a href="#"><i class="fas fa-upload"></i> 提交作品</a></li>
                     </ul>
                 </div>
                 
@@ -572,46 +234,16 @@
                 </div>
             </div>
             <div class="copyright">
-                &copy; 本比赛禁止分享游戏数据  | 请使用个人正版游戏资源整合
+                &copy; 本比赛禁止直接分享游戏数据  | 请使用个人正版游戏资源整合
             </div>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 表单提交处理
-            const submissionForm = document.getElementById('submissionForm');
-            
-            submissionForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // 简单的表单验证
-                const projectName = document.getElementById('projectName').value;
-                const teamName = document.getElementById('teamName').value;
-                const contactEmail = document.getElementById('contactEmail').value;
-                const projectType = document.getElementById('projectType').value;
-                const projectDescription = document.getElementById('projectDescription').value;
-                
-                if (!projectName || !teamName || !contactEmail || !projectType || !projectDescription) {
-                    alert('请填写所有必填字段！');
-                    return;
-                }
-                
-                if (projectDescription.length < 200) {
-                    alert('作品简介至少需要200字！');
-                    return;
-                }
-                
-                // 在实际应用中，这里应该发送表单数据到服务器
-                // 这里只做演示用途
-                alert('作品提交成功！我们的团队将会审核您的作品。感谢参与！');
-                submissionForm.reset();
-            });
-            
-            // 设置当前活动链接
+        document.addEventListener('DOMContentLoaded', function(){
             const currentPage = window.location.pathname.split('/').pop();
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
+            document.querySelectorAll('.nav-links a').forEach(link=>{
+                if(link.getAttribute('href') === currentPage){
                     link.classList.add('active');
                 }
             });
